@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import MainMenu from './MainMenu';
 
-function App() {
+//
+// App Component function.
+// Stores the state of the app and renders the different views.
+//
+const App = () => {
+  // State variables
+  const [gameView, setGameView] = useState('mainMenu');
+  const [activeMode, setActiveMode] = useState('singlePlayer');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className='gameWindow'>
+        {gameView === 'mainMenu' ? (
+          <MainMenu
+            setGameView={setGameView}
+            setActiveMode={setActiveMode}
+            activeMode={activeMode}
+          />
+        ):<></>
+        }
+      </div>
     </div>
   );
-}
+};
 
 export default App;
