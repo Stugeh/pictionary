@@ -31,6 +31,16 @@ li {
   height: 800px;
 }
 
+.gameSetup{
+
+}
+
+.gameSetup h1 {
+  text-align: center;
+  font-size: 70px;
+  padding-bottom: ;
+}
+
 .TopBar {
   grid-area: TopBar;
 }
@@ -42,7 +52,7 @@ li {
 }
 
 .radioButtons{
-  padding-top: 30px;
+  margin: -30px;
 }
 
 .mainMenu {

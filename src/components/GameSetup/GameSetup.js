@@ -1,10 +1,18 @@
 import React from 'react';
 
+import ModeToggle from '../ModeToggle';
 
 const GameSetup = ({setGameView, setActiveMode, activeMode}) => {
-  console.log(' :>> ');
   return (
-    <div>SetUp</div>
+    <div className='gameSetup'>
+      <h1>
+        {activeMode.toUpperCase()}
+        <ModeToggle
+          setActiveMode={setActiveMode}
+          activeMode={activeMode}
+        />
+      </h1>
+    </div>
   );
 };
 
