@@ -4,24 +4,32 @@ import {Paper, Divider} from '@material-ui/core';
 const SinglePlayerRules = () => (
   <ol>
     <li>
-      One person gets shown a list of words while other players look away
+      Player is shown a grid that hides a picture underneath.
     </li>
     <li>
-      That person then draws the word while other players attempt to guess it
+      The players objective is to guess what the object in the photo is.
+      They do this by typing in words into the chat box on the left of the
+      screen.
     </li>
     <li>
-      when the correct word is guessed the drawer clicks the correct button next
-      to the guessers name
+      Periodically tiles are removed revealing more of the picture.
     </li>
   </ol>
 );
 
 const MultiPlayerRules = () => (
-  <ul>
+  <ol>
     <li>
-      Player gets
+      One person gets shown a list of words while other players look away.
     </li>
-  </ul>
+    <li>
+      That person then draws the word while other players attempt to guess it.
+    </li>
+    <li>
+      when the correct word is guessed the drawer clicks the correct button next
+      to the guessers name.
+    </li>
+  </ol>
 );
 
 const MenuRules = ({activeMode}) => {

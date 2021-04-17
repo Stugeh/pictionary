@@ -7,9 +7,9 @@ import PersonIcon from '@material-ui/icons/Person';
 import PeopleAltSharpIcon from '@material-ui/icons/PeopleAltSharp';
 
 // Title logo at the top of the screen
-import logo from './assets/title.png';
+import logo from '../../assets/title.png';
 
-import MenuRules from './components/MenuRules';
+import MenuRules from './MenuRules';
 
 //
 // MainMenu Component.
