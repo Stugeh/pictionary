@@ -17,10 +17,6 @@ import ModeToggle from '../ModeToggle';
 //
 
 const MainMenu = ({setGameView, setActiveMode, activeMode}) => {
-  // State variables that will not require the game to rerender
-  // anything else but the component they are in.
-  // ie. the main menu in this case.
-
   const playButtonStyle = {
     paddingLeft: '50px',
     paddingRight: '50px',

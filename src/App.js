@@ -10,7 +10,7 @@ const App = () => {
   // State variables
   const [gameView, setGameView] = useState('mainMenu');
   const [activeMode, setActiveMode] = useState('singlePlayer');
-  console.log(`gameView`, gameView);
+
   return (
     <div>
       <div className='gameWindow'>
