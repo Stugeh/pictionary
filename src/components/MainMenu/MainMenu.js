@@ -8,7 +8,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import logo from '../../assets/title.png';
 
 import MenuRules from './MenuRules';
-import ModeToggle from './ModeToggle';
+import ModeToggle from '../ModeToggle';
 
 //
 // MainMenu Component.
