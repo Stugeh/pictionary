@@ -19,4 +19,5 @@ export const singlePlayerSettings = {
 export const MultiPlayerSettings = {
   roundTimer: 30,
   letterReveal: 8,
+  players: [],
 };
