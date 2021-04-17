@@ -35,13 +35,18 @@ li {
   display: grid;
   height: 100%;
   grid-template-columns: 1.5fr 0.5fr;
-  grid-template-rows: 0.3fr 1.7fr;
+  grid-template-rows: 0.3fr 2.4fr 0.3fr;
   gap: 0px 0px;
   grid-template-areas:
-    "header   ."
-    "settings sidebar";
+    "header   .      "
+    "settings sidebar"
+    "play     .      "
 }
-  
+
+.play { 
+  grid-area: play; 
+  text-align: center;
+}
 .playerList { 
   grid-area: sidebar;
 }
