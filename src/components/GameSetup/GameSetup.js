@@ -10,11 +10,13 @@ import MultiSetup from './MultiSetup';
 
 const GameSetup = ({setGameView, setActiveMode, activeMode}) => {
   const playButtonStyle = {
+    paddingTop: '0px',
+    paddinBottom: '0px',
     paddingLeft: '50px',
     paddingRight: '50px',
     backgroundColor: 'green',
-    fontSize: '50px',
-    marginTop: '50px',
+    fontSize: '40px',
+    marginBottom: '30px',
   };
 
   return (
@@ -33,6 +35,7 @@ const GameSetup = ({setGameView, setActiveMode, activeMode}) => {
         <Button
           variant='contained'
           style={playButtonStyle}
+          color='primary'
           onClick={() => setGameView('game')}
         >
           <PlayArrowIcon fontSize='large'/>
