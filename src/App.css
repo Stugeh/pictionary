@@ -6,7 +6,11 @@ body {
   height: 96vh;
   padding: 0;
 }
-
+li {
+  padding-bottom: 10px;
+  text-align: left;
+  padding-right: 30px;
+}
 .gameGrid {
   display: grid;
   grid-template-columns: 0.3fr 2.5fr 0.9fr 0.3fr;
