@@ -3,17 +3,13 @@ import {Paper, Divider} from '@material-ui/core';
 
 const SinglePlayerRules = () => (
   <ol>
-    <li>
-      Player is shown a grid that hides a picture underneath.
-    </li>
+    <li>Player is shown a grid that hides a picture underneath.</li>
     <li>
       The players objective is to guess what the object in the photo is.
       They do this by typing in words into the chat box on the left of the
       screen.
     </li>
-    <li>
-      Periodically tiles are removed revealing more of the picture.
-    </li>
+    <li>Periodically tiles are removed revealing more of the picture.</li>
   </ol>
 );
 
