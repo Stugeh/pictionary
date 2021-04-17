@@ -32,13 +32,38 @@ li {
 }
 
 .gameSetup{
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1.5fr 0.5fr;
+  grid-template-rows: 0.3fr 1.7fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "header   ."
+    "settings sidebar";
+}
+  
+.playerList { 
+  grid-area: sidebar;
+}
 
+.settings { 
+  grid-area: settings;
+  height: 100%; 
+}
+
+.setUpHeader {
+  grid-area: header;
+  background-color: gray;
+}
+  
+
+.gameSetup .radioButtons {
+  margin-top: -30px;
 }
 
 .gameSetup h1 {
   text-align: center;
   font-size: 70px;
-  padding-bottom: ;
 }
 
 .TopBar {
@@ -52,8 +77,9 @@ li {
 }
 
 .radioButtons{
-  margin: -30px;
+  margin-top: 10px;
 }
+
 
 .mainMenu {
   padding: 10px;
