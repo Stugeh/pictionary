@@ -9,25 +9,13 @@ import MultiSetup from './MultiSetup';
 
 
 const GameSetup = ({setGameView, setActiveMode, activeMode}) => {
-  const playButtonStyle = {
-    paddingTop: '0px',
-    paddinBottom: '0px',
-    paddingLeft: '50px',
-    paddingRight: '50px',
-    backgroundColor: 'green',
-    fontSize: '40px',
-    marginBottom: '30px',
-  };
-
+  console.log(activeMode);
   return (
     <div className='gameSetup'>
 
       <h1 className='setupHeader'>
         {activeMode.toUpperCase()}
-        <ModeToggle
-          setActiveMode={setActiveMode}
-          activeMode={activeMode}
-        />
+        <ModeToggle setActiveMode={setActiveMode} activeMode={activeMode} />
       </h1>
       {activeMode === 'singlePlayer' ? <SingleSetup/>: <></>}
       {activeMode === 'multiPlayer' ? <MultiSetup/>: <></>}
@@ -44,6 +32,16 @@ const GameSetup = ({setGameView, setActiveMode, activeMode}) => {
       </div>
     </div>
   );
+};
+
+const playButtonStyle = {
+  paddingTop: '0px',
+  paddinBottom: '0px',
+  paddingLeft: '50px',
+  paddingRight: '50px',
+  backgroundColor: 'green',
+  fontSize: '40px',
+  marginBottom: '30px',
 };
 
 export default GameSetup;

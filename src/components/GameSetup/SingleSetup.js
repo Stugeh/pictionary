@@ -6,9 +6,6 @@ const SingleSetup = ({setGameView, setActiveMode, activeMode}) => {
       <div className='settings'>
 
       </div>
-      <div className='playerList'>
-
-      </div>
     </span>
   );
 };
