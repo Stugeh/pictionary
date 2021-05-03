@@ -21,14 +21,16 @@ const MultiSetup = ({setGameView, setActiveMode, activeMode}) => {
   };
 
   return (
-    <span>
-      <div className='settings'>
+    <span className='settings'>
+      <div>
         <form onSubmit={addPlayer}>
           <TextField {...playerEntry}/>
           <Button variant='contained' color='primary'>
             Submit
           </Button>
         </form>
+        setting1
+        setting2
       </div>
       <div className='playerList'>
         {playerList.map((player) => (

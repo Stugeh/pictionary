@@ -9,7 +9,6 @@ import MultiSetup from './MultiSetup';
 
 
 const GameSetup = ({setGameView, setActiveMode, activeMode}) => {
-  console.log(activeMode);
   return (
     <div className='gameSetup'>
 
@@ -17,6 +16,7 @@ const GameSetup = ({setGameView, setActiveMode, activeMode}) => {
         {activeMode.toUpperCase()}
         <ModeToggle setActiveMode={setActiveMode} activeMode={activeMode} />
       </h1>
+
       {activeMode === 'singlePlayer' ? <SingleSetup/>: <></>}
       {activeMode === 'multiPlayer' ? <MultiSetup/>: <></>}
       <div className='play'>

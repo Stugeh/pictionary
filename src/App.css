@@ -39,7 +39,7 @@ li {
   gap: 0px 0px;
   grid-template-areas:
     "header   .      "
-    "settings sidebar"
+    "main     sidebar"
     "play     .      "
 }
 
@@ -52,7 +52,7 @@ li {
 }
 
 .settings { 
-  grid-area: settings;
+  grid-area: main;
   height: 100%; 
 }
 

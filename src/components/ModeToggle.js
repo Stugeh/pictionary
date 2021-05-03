@@ -12,6 +12,7 @@ const ModeToggle = ({setActiveMode, activeMode}) => {
         setActiveMode('singlePlayer') :
         setActiveMode('multiPlayer');
   };
+
   return (
     <div className='radioButtons'>
       <Button
