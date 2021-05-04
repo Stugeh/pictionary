@@ -49,7 +49,6 @@ li {
 
 .playerList { 
   grid-area: sidebar;
-  background-color: aquamarine;
 }
 
 .settings { 
