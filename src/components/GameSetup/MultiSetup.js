@@ -7,7 +7,6 @@ import {TextField, Button} from '@material-ui/core';
 
 const MultiSetup = ({setGameView, setActiveMode, activeMode}) => {
   const [playerList, setPlayerList] = useState([]);
-
   const {
     reset: playerEntryReset,
     ...playerEntry
@@ -15,28 +14,35 @@ const MultiSetup = ({setGameView, setActiveMode, activeMode}) => {
 
   const addPlayer = (e) => {
     e.preventDefault();
-    const newPlayer = {playerEntry, score: 0};
-    setPlayerList([...playerList, newPlayer]);
+    const newPlayer = {name: playerEntry.value, score: 0};
+    if (!playerList.some((player) => player.name === playerEntry.value)) {
+      console.log(newPlayer);
+      setPlayerList([...playerList, newPlayer]);
+    } else {
+      // TODO
+    }
     playerEntryReset();
   };
 
   return (
     <span className='settings'>
-      <div>
-        <form onSubmit={addPlayer}>
+      <div style={{paddingLeft: '10%'}}>
+        <form onSubmit={addPlayer} >
           <TextField {...playerEntry}/>
-          <Button variant='contained' color='primary'>
+          <Button variant='contained' color='primary' type='submit'>
             Submit
           </Button>
         </form>
         setting1
         setting2
       </div>
+
       <div className='playerList'>
         {playerList.map((player) => (
           <Player key={player.name} player={player}/>
         ))}
       </div>
+
     </span>
   );
 };
