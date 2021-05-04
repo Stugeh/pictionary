@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import Player from './Player';
 import {useField} from '../../hooks/formHook';
 
-import {TextField, Button} from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import {TextField, Button, List} from '@material-ui/core';
 
 const MultiSetup = ({/* setGameView,setActiveMode,activeMode*/setSettings}) => {
   const [playerList, setPlayerList] = useState([]);
@@ -69,9 +69,11 @@ const MultiSetup = ({/* setGameView,setActiveMode,activeMode*/setSettings}) => {
       </div>
 
       <div className='playerList'>
-        {playerList.map((player) => (
-          <Player key={player.name} player={player}/>
-        ))}
+        <List>
+          {playerList.map((player) => (
+            <Player key={player.name} player={player}/>
+          ))}
+        </List>
       </div>
 
     </span>

@@ -1,8 +1,15 @@
 import React from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
+import {ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
 
-const Player = () => {
+const Player = ({player}) => {
   return (
-    <div></div>
+    <ListItem button>
+      <ListItemIcon>
+        <DeleteIcon/>
+      </ListItemIcon>
+      <ListItemText primary={player.name} />
+    </ListItem>
   );
 };
 
