@@ -1,13 +1,11 @@
 /* eslint no-unused-vars: ["error", { "ignoreRestSiblings": true }]*/
-import React, {useState} from 'react';
-import Player from './Player';
+import React from 'react';
 import {useField} from '../../hooks/formHook';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import {TextField, Button, List} from '@material-ui/core';
+import {TextField, Button} from '@material-ui/core';
 
-const MultiSetup = ({/* setGameView,setActiveMode,activeMode*/setSettings}) => {
-  const [playerList, setPlayerList] = useState([]);
+const MultiSetup = ({setSettings, setPlayerList, playerList}) => {
   const {
     reset: roundTimerReset, ...roundTimer} = useField('number', 'seconds');
   const {
@@ -38,45 +36,33 @@ const MultiSetup = ({/* setGameView,setActiveMode,activeMode*/setSettings}) => {
   };
 
   return (
-    <span className='settings'>
-      <div style={{textAlign: 'center'}}>
+    <div className='settings' style={{textAlign: 'center'}}>
 
-        <form onSubmit={addPlayer} >
-          <TextField {...playerEntry}/>
-          <Button variant='contained' color='primary' type='submit'>
+      <form onSubmit={addPlayer} >
+        <TextField {...playerEntry}/>
+        <Button variant='contained' color='primary' type='submit'>
             Submit
-          </Button>
-        </form>
+        </Button>
+      </form>
 
-        <form onSubmit={startGame} style={{paddingTop: '15%'}}>
-          <h3>Round timer</h3>
-          <TextField {...roundTimer}/>
-          <h3>Letter reveal timer</h3>
-          <TextField {...letterTimer}/>
-          <div className='play'>
-            <Button
-              variant='contained'
-              style={playButtonStyle}
-              color='primary'
-              type='submit'
-            >
-              <PlayArrowIcon fontSize='large'/>
+      <form onSubmit={startGame} style={{paddingTop: '15%'}}>
+        <h3>Round timer</h3>
+        <TextField {...roundTimer}/>
+        <h3>Letter reveal timer</h3>
+        <TextField {...letterTimer}/>
+        <div className='play'>
+          <Button
+            variant='contained'
+            style={playButtonStyle}
+            color='primary'
+            type='submit'
+          >
+            <PlayArrowIcon fontSize='large'/>
             Play
-            </Button>
-          </div>
-        </form>
-
-      </div>
-
-      <div className='playerList'>
-        <List>
-          {playerList.map((player) => (
-            <Player key={player.name} player={player}/>
-          ))}
-        </List>
-      </div>
-
-    </span>
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

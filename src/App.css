@@ -35,20 +35,21 @@ li {
   display: grid;
   height: 100%;
   grid-template-columns: 1.5fr 0.5fr;
-  grid-template-rows: 0.3fr 2.4fr 0.3fr;
+  grid-template-rows: 0.3fr 2.4fr;
   gap: 0px 0px;
   grid-template-areas:
-    "header   .      "
-    "main     sidebar"
-    "play     .      "
+    "header ."
+    "main sidebar"
 }
 
 .play { 
-  grid-area: play; 
+  grid-area: main; 
   text-align: center;
 }
+
 .playerList { 
   grid-area: sidebar;
+  background-color: aquamarine;
 }
 
 .settings { 

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import ModeToggle from '../ModeToggle';
-import SingleSetup from './SingleSetup';
-import MultiSetup from './MultiSetup';
+import SingleSettings from './SingleSettings';
+import MultiSettings from './MultiSettings';
+import PlayerList from './PlayerList';
 
 
 const GameSetup = ({setGameView, setActiveMode, activeMode, setSettings}) => {
+  const [playerList, setPlayerList] = useState([]);
   return (
     <div className='gameSetup'>
 
@@ -15,10 +17,20 @@ const GameSetup = ({setGameView, setActiveMode, activeMode, setSettings}) => {
       </h1>
 
       {activeMode === 'singlePlayer' ?
-        <SingleSetup setSettings={setSettings} setGameView={setGameView}/>:null}
+        <SingleSettings
+          setSettings={setSettings}
+          setGameView={setGameView}
+        />:null}
 
       {activeMode === 'multiPlayer' ?
-        <MultiSetup setSettings={setSettings} setGameView={setGameView}/>:null}
+        <MultiSettings
+          setSettings={setSettings}
+          setGameView={setGameView}
+          setPlayerList={setPlayerList}
+          playerList={playerList}
+        />:null}
+
+      <PlayerList className='playerList' playerList={playerList}/>
 
     </div>
   );
