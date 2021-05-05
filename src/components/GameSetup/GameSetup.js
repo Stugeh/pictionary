@@ -30,7 +30,11 @@ const GameSetup = ({setGameView, setActiveMode, activeMode, setSettings}) => {
           playerList={playerList}
         />:null}
 
-      <PlayerList className='playerList' playerList={playerList}/>
+      <PlayerList
+        className='playerList'
+        playerList={playerList}
+        setPlayerList={setPlayerList}
+      />
 
     </div>
   );

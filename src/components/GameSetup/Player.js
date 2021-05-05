@@ -1,12 +1,19 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {ListItem, ListItemIcon, ListItemText, Button} from '@material-ui/core';
 
-const Player = ({player}) => {
+const Player = ({player, deletePlayer}) => {
   return (
-    <ListItem button>
+    <ListItem>
       <ListItemIcon>
-        <DeleteIcon/>
+        <Button
+          onClick={() => deletePlayer(player)}
+          color='primary'
+          variant='contained'
+          style={{color: 'black', backgroundColor: 'red', marginRight: '10px'}}
+        >
+          <DeleteIcon />
+        </Button>
       </ListItemIcon>
       <ListItemText primary={player.name} />
     </ListItem>
