@@ -19,7 +19,6 @@ const MultiSetup = ({setSettings, setPlayerList, playerList}) => {
     e.preventDefault();
     const newPlayer = {name: playerEntry.value, score: 0};
     if (!playerList.some((player) => player.name === playerEntry.value)) {
-      console.log(newPlayer);
       setPlayerList([...playerList, newPlayer]);
     } else {
       // TODO

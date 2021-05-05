@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import MainMenu from './components/MainMenu/MainMenu';
 import GameSetup from './components/GameSetup/GameSetup';
+import MultiPlayer from './components/GameView/MultiPlayer';
 
 //
 // App Component function.
@@ -13,7 +14,6 @@ const App = () => {
   const [activeMode, setActiveMode] = useState('singlePlayer');
   const [settings, setSettings] = useState({});
 
-  console.log('settings :>> ', settings);
   return (
     <div>
       <div className='gameWindow'>
@@ -31,6 +31,15 @@ const App = () => {
             setActiveMode={setActiveMode}
             activeMode={activeMode}
             setSettings={setSettings}
+          />
+        ):null}
+
+        {gameView === 'multiPlayer' ? (
+          <MultiPlayer
+            setGameView={setGameView}
+            setActiveMode={setActiveMode}
+            activeMode={activeMode}
+            settings={settings}
           />
         ):null}
       </div>
