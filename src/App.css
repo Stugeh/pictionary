@@ -13,13 +13,13 @@ li {
 }
 .gameGrid {
   display: grid;
-  grid-template-columns: 0.3fr 2.5fr 0.9fr 0.3fr;
-  grid-template-rows: 0.3fr 2.5fr 0.6fr;
+  height: 100%;
+  grid-template-columns: 2.5fr 0.9fr;
+  grid-template-rows: 0.3fr 2.5fr;
   gap: 0px 0px;
   grid-template-areas:
-  ".   TopBar   TopBar   ."
-  ".   Canvas   SideBar  ."
-  ".   .        .        .";
+  "   topBar   topBar   ."
+  "   canvas   sideBar  ."
 }
 
 .gameWindow {
@@ -40,6 +40,11 @@ li {
   grid-template-areas:
     "header ."
     "main sidebar"
+}
+
+.canvas {
+  grid-area: canvas;
+  overflow: hidden;
 }
 
 .play { 

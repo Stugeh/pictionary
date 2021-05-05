@@ -5,7 +5,7 @@ import {useField} from '../../hooks/formHook';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import {TextField, Button} from '@material-ui/core';
 
-const MultiSetup = ({setSettings, setPlayerList, playerList}) => {
+const MultiSetup = ({setSettings, setPlayerList, playerList, setGameView}) => {
   const {
     reset: roundTimerReset, ...roundTimer} = useField('number', 'seconds');
   const {
@@ -35,6 +35,7 @@ const MultiSetup = ({setSettings, setPlayerList, playerList}) => {
       playerList,
     };
     setSettings(newSettings);
+    setGameView('multiPlayer');
   };
 
   return (
