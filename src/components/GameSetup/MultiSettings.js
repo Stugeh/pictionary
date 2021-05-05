@@ -11,6 +11,8 @@ const MultiSetup = ({setSettings, setPlayerList, playerList}) => {
   const {
     reset: letterTimerReset, ...letterTimer} = useField('number', 'seconds');
   const {
+    reset: roundCountReset, ...roundCount} = useField('number', 'rounds');
+  const {
     reset: playerEntryReset, ...playerEntry} = useField('text', 'nickname');
 
   const addPlayer = (e) => {
@@ -30,6 +32,7 @@ const MultiSetup = ({setSettings, setPlayerList, playerList}) => {
     const newSettings = {
       letterTimer: letterTimer.value,
       roundTimer: roundTimer.value,
+      roundCount: roundCount.value,
       playerList,
     };
     setSettings(newSettings);
@@ -50,6 +53,8 @@ const MultiSetup = ({setSettings, setPlayerList, playerList}) => {
         <TextField {...roundTimer}/>
         <h3>Letter reveal timer</h3>
         <TextField {...letterTimer}/>
+        <h3>Round Count</h3>
+        <TextField {...roundCount}/>
         <div className='play'>
           <Button
             variant='contained'
