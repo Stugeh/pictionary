@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import useInterval from 'use-interval';
 
+
+// max value is the value the timer is reset to if it hits 0
 const decrement = (value, maxVal) => {
   const newVal = value-1;
   return newVal === 0 ? maxVal : newVal;
@@ -14,20 +16,31 @@ export const useRound = (settings, drawer=0) => {
         inProgress: false,
         roundTimer: settings.roundTimer,
         letterTimer: settings.letterTimer,
+        word: '',
+        visible: '',
+        winner: null,
       },
   );
 
   const decrementTimers = () => {
-    setRound({
+    if (round.roundTimer === 1) {
+      stop();
+      return round;
+    }
+
+    const updatedRound = {
       ...round,
-      roundTimer: decrement(round.roundTimer),
-      letterTimer: decrement(round.letterTimer),
-    });
+      visible: round.letterTimer===1 ?
+          revealLetter(round.visible) : round.visible,
+      roundTimer: decrement(round.roundTimer, settings.roundTimer),
+      letterTimer: decrement(round.letterTimer, settings.letterTimer),
+    };
+    setRound(updatedRound);
   };
 
   if (round.inProgress) {
     useInterval(() => {
-      decrementTimers(round);
+      setRound(decrementTimers(round));
     }, 1000);
   }
 
@@ -42,6 +55,8 @@ export const useRound = (settings, drawer=0) => {
   const nextRound = () => {
     const newDrawer = drawer === settings.playerList.length-1 ? 0 : drawer+1;
     setRound({
+      word: '',
+      visible: '',
       drawer: newDrawer,
       inProgress: false,
       roundTimer: settings.roundTimer,
@@ -49,5 +64,9 @@ export const useRound = (settings, drawer=0) => {
     });
   };
 
-  return {nextRound, start, stop, round, setRound};
+  const selectWord = (word) => {
+    setRound(...round, word);
+  };
+
+  return {nextRound, start, stop, round, setRound, selectWord};
 };
