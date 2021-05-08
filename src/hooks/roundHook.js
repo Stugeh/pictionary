@@ -66,5 +66,9 @@ export const useRound = (settings, drawer=0) => {
     setRound(...round, word);
   };
 
+  const revealLetter = () => {
+
+  };
+
   return {nextRound, start, stop, round, setRound, selectWord};
 };

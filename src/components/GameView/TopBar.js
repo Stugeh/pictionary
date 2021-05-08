@@ -7,8 +7,8 @@ import {Button} from '@material-ui/core';
 const TopBar = ({round, setRound}) => {
   return (
     <div className='topBar'>
+      <h3>{round.round.roundTimer} seconds</h3>
       <Button onClick ={ () => round.start()}>start</Button>
-      {round.round.roundTimer}
 
     </div>
   );
