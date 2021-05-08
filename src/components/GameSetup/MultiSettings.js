@@ -29,11 +29,12 @@ const MultiSetup = ({setSettings, setPlayerList, playerList, setGameView}) => {
   const startGame = (e) => {
     e.preventDefault();
     const newSettings = {
-      letterTimer: letterTimer.value,
-      roundTimer: roundTimer.value,
-      roundCount: roundCount.value,
+      letterTimer: parseInt(letterTimer.value),
+      roundTimer: parseInt(roundTimer.value),
+      roundCount: parseInt(roundCount.value),
       playerList,
     };
+    console.log(`newSettings`, newSettings);
     setSettings(newSettings);
     setGameView('multiPlayer');
   };

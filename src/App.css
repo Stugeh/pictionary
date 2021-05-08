@@ -18,8 +18,8 @@ li {
   grid-template-rows: 0.3fr 2.5fr;
   gap: 0px 0px;
   grid-template-areas:
-  "   topBar   topBar   ."
-  "   canvas   sideBar  ."
+  "topBar   topBar"
+  "canvas   sideBar"
 }
 
 .gameWindow {
@@ -76,13 +76,16 @@ li {
   font-size: 70px;
 }
 
-.TopBar {
-  grid-area: TopBar;
+.topBar {
+  grid-area: topBar;
+  background-color: rgb(146, 146, 245);
+  height: 100%;
+  width: 100%;
 }
 .SideBar {
   grid-area: SideBar; 
 }
-.Canvas {
+.canvas {
   grid-area: Canvas; 
 }
 
