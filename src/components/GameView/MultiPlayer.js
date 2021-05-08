@@ -30,8 +30,8 @@ const MultiPlayer = () => {
       </div>
       <div className='canvas'>
         <ReactPainter
-          height={1}
-          width={1}
+          height={3000}
+          width={3000}
           render={({canvas}) => (
             <span>{canvas}</span>
           )}

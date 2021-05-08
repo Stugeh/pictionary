@@ -86,7 +86,8 @@ li {
   grid-area: sideBar; 
 }
 .canvas {
-  grid-area: Canvas; 
+  grid-area: canvas; 
+  overflow: hidden;
 }
 
 .radioButtons{
