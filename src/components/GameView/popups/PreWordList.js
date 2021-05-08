@@ -3,7 +3,7 @@ import React from 'react';
 import {Divider, Button} from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
-const PreWordList = ({playerList, drawer}) => {
+const PreWordList = ({playerList, drawer, setPopupVariant}) => {
   return (
     <div style={{padding: '20px'}}>
       <h2>
@@ -13,6 +13,7 @@ const PreWordList = ({playerList, drawer}) => {
       <Divider/>
       <Button
         variant='contained'
+        onClick={() => setPopupVariant('wordList')}
         style={{
           width: '98%',
           color: 'white',
