@@ -15,6 +15,9 @@ const PlayerScore = ({player}) => {
         </Button>
       </ListItemIcon>
       <ListItemText primary={player.name} />
+      <ListItemText
+        primary={`score: ${player.score}`}
+        style={{textAlign: 'right'}}/>
     </ListItem>
   );
 };
