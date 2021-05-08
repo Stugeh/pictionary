@@ -9,9 +9,10 @@ const PlayerScore = ({player}) => {
         <Button
           color='primary'
           variant='contained'
-          style={{color: 'black', backgroundColor: 'red', marginRight: '10px'}}
+          style={{backgroundColor: 'green', marginRight: '10px'}}
         >
           <CheckIcon />
+          correct
         </Button>
       </ListItemIcon>
       <ListItemText primary={player.name} />
