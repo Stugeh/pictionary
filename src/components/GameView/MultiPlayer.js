@@ -24,6 +24,8 @@ const MultiPlayer = () => {
     ],
   };
 
+  const playerList= TEST_SETTINGS.playerList;
+
   const {nextRound, start, stop, round,
     setRound, selectWord} = useRound(TEST_SETTINGS);
 
@@ -32,8 +34,12 @@ const MultiPlayer = () => {
       <TopBar round={round} settings={TEST_SETTINGS} start={start} stop={stop}/>
       <div className='popUp'>
         {popupOpen ?
-        <PopUp popupVariant={popupVariant} setPopupVariant={setPopupVariant}/> :
-        null}
+        <PopUp
+          popupVariant={popupVariant}
+          setPopupVariant={setPopupVariant}
+          playerList={playerList}
+          drawer={round.drawer}
+        /> : null}
       </div>
       <div className='canvas'>
         <ReactPainter

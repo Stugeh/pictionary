@@ -1,13 +1,28 @@
 import React from 'react';
 
-import {Divider} from '@material-ui/core';
+import {Divider, Button} from '@material-ui/core';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
-const PreWordList = () => {
+const PreWordList = ({playerList, drawer}) => {
   return (
-    <div>
-      <h1>asasdasdd</h1>
+    <div style={{padding: '20px'}}>
+      <h2>
+        Everyone look away while {playerList[drawer].name} chooses
+        a word to draw
+      </h2>
       <Divider/>
-      <div>asdasd</div>
+      <Button
+        variant='contained'
+        style={{
+          width: '98%',
+          color: 'white',
+          backgroundColor: 'green',
+          fontSize: '20px',
+        }}
+      >
+        <VisibilityIcon style={{paddingRight: '10px'}}/>
+        Reveal
+      </Button>
     </div>
   );
 };
