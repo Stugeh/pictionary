@@ -10,9 +10,12 @@ import SideBar from './SideBar';
 
 const MultiPlayer = () => {
   const [popupOpen, setPopupOpen] = useState(true);
+  /** preWordList, wordList, winner, noWinner */
+  const [popupVariant, setPopupVariant] = useState('preWordList');
+
   const TEST_SETTINGS = {
     letterTimer: 99,
-    roundTimer: 999999999,
+    roundTimer: 5,
     roundCount: 999,
     playerList: [
       {name: 'asd', score: 0},
@@ -21,12 +24,16 @@ const MultiPlayer = () => {
     ],
   };
 
-  const {...round} = useRound(TEST_SETTINGS);
+  const {nextRound, start, stop, round,
+    setRound, selectWord} = useRound(TEST_SETTINGS);
+
   return (
     <div className='gameGrid'>
-      <TopBar round={round} />
+      <TopBar round={round} settings={TEST_SETTINGS} start={start} stop={stop}/>
       <div className='popUp'>
-        {popupOpen ? <PopUp/> : null }
+        {popupOpen ?
+        <PopUp popupVariant={popupVariant} setPopupVariant={setPopupVariant}/> :
+        null}
       </div>
       <div className='canvas'>
         <ReactPainter

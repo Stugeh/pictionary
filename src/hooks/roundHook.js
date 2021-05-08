@@ -5,7 +5,7 @@ import useInterval from 'use-interval';
 // max value is the value the timer is reset to if it hits 0
 const decrement = (value, maxVal) => {
   const newVal = value-1;
-  return newVal === 0 ? maxVal : newVal;
+  return newVal === -1 ? maxVal : newVal;
 };
 
 export const useRound = (settings, drawer=0) => {
@@ -22,19 +22,17 @@ export const useRound = (settings, drawer=0) => {
   );
 
   useInterval(() => {
-    if (round.inProgress) {
+    if (round.roundTimer === 0) stop();
+    if (round.inProgress && round.roundTimer !== 0) {
       setRound(decrementTimers(round));
     }
   }, 1000);
 
   const decrementTimers = () => {
-    if (round.roundTimer === 1) {
-      nextRound();
-    }
     const updatedRound = {
       ...round,
       visible: round.letterTimer === 1 ?
-          revealLetter(round.visible) : round.visible,
+      revealLetter(round.visible) : round.visible,
       roundTimer: decrement(round.roundTimer, settings.roundTimer),
       letterTimer: decrement(round.letterTimer, settings.letterTimer),
     };
@@ -47,7 +45,8 @@ export const useRound = (settings, drawer=0) => {
   };
 
   const stop = () => {
-    setRound({...round, inProgress: false});
+    const updatedRound = {...round, inProgress: false};
+    setRound(updatedRound);
   };
 
   const nextRound = () => {
