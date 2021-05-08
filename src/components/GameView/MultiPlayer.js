@@ -19,10 +19,9 @@ const MultiPlayer = () => {
   };
 
   const {...round} = useRound(TEST_SETTINGS);
-
   return (
     <div className='gameGrid'>
-      {/* <TopBar round={round} setRound={setRound} /> */}
+      <TopBar round={round} />
       <div className='canvas'>
         <ReactPainter
           height={1}

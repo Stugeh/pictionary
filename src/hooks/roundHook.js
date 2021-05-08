@@ -13,19 +13,19 @@ export const useRound = (settings, drawer=0) => {
   const [round, setRound] = useState(
       {
         drawer,
-        inProgress: true,
+        inProgress: false,
         roundTimer: settings.roundTimer,
         letterTimer: settings.letterTimer,
         word: '',
         visible: '',
       },
   );
-  console.log('round :>> ', round);
-  if (round.inProgress) {
-    useInterval(() => {
+
+  useInterval(() => {
+    if (round.inProgress) {
       setRound(decrementTimers(round));
-    }, 1000);
-  }
+    }
+  }, 1000);
 
   const decrementTimers = () => {
     if (round.roundTimer === 1) {
