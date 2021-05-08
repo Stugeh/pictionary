@@ -11,12 +11,13 @@ li {
   text-align: left;
   padding-right: 30px;
 }
+
 .gameGrid {
   display: grid;
   height: 100%;
   grid-template-columns: 2.5fr 0.9fr;
-  grid-template-rows: 0.3fr 2.5fr;
-  gap: 0px 0px;
+  grid-template-rows: 0.3fr 2.6fr;
+  position: relative;
   grid-template-areas:
   "topBar   topBar"
   "canvas   sideBar"
@@ -36,7 +37,6 @@ li {
   height: 100%;
   grid-template-columns: 1.5fr 0.5fr;
   grid-template-rows: 0.3fr 2.4fr;
-  gap: 0px 0px;
   grid-template-areas:
     "header ."
     "main sidebar"
@@ -82,8 +82,8 @@ li {
   height: 100%;
   width: 100%;
 }
-.SideBar {
-  grid-area: SideBar; 
+.sidebar {
+  grid-area: sideBar; 
 }
 .canvas {
   grid-area: Canvas; 
@@ -93,6 +93,23 @@ li {
   margin-top: 10px;
 }
 
+.popUp {
+  width: 300px;
+  position: absolute;
+  text-align: center;
+  top: 40%;
+  left: 37%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: #fff;
+  color: black;
+  padding: 12px;
+  box-shadow: 5px 5px 100px 5px rgb(66, 66, 66);
+}
+
+.scores{
+  height: 100%;
+}
 
 .mainMenu {
   padding: 10px;
