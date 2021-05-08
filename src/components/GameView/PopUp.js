@@ -1,13 +1,20 @@
 import React from 'react';
 
-import {Card, Divider} from '@material-ui/core';
+import PreWordList from './popups/PreWordList';
+import WordList from './popups/PreWordList';
+import Winner from './popups/Winner';
+import NoWinner from './popups/NoWinner';
 
-const PopUp = () => {
+import {Card} from '@material-ui/core';
+
+const PopUp = ({popupVariant, setPopupVariant}) => {
+  /** preWordList, wordList, winner, noWinner */
   return (
     <Card>
-      <h1>asasdasdd</h1>
-      <Divider/>
-      <div>asdasd</div>
+      {popupVariant === 'preWordList' ? <PreWordList/> : null}
+      {popupVariant === 'WordList' ? <WordList/> : null}
+      {popupVariant === 'Winner' ? <Winner/> : null}
+      {popupVariant === 'noWinner' ? <NoWinner/> : null}
     </Card>
   );
 };
