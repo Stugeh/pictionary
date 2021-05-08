@@ -18,7 +18,7 @@ const MultiPlayer = () => {
     ],
   };
 
-  const {round, setRound} = useRound(TEST_SETTINGS);
+  const {...round} = useRound(TEST_SETTINGS);
 
   return (
     <div className='gameGrid'>
