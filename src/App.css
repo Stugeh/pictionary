@@ -102,6 +102,7 @@ li {
 
 .popUp {
   width: 300px;
+  height: 215px;
   position: absolute;
   text-align: center;
   top: 40%;

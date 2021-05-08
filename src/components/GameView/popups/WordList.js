@@ -1,11 +1,15 @@
 import React from 'react';
+import {List} from '@material-ui/core';
 
-const WordList = () => {
-  console.log('1 :>> ', 1);
+const WordList = ({wordList, setWordList}) => {
   return (
-    <div>
-      asdasd
-    </div>
+    <List style={{height: '215px'}}>
+      {wordList.map((word)=>(
+        <h3 key={word}>
+          {word}
+        </h3>
+      ))}
+    </List>
   );
 };
 

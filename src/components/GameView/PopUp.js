@@ -5,25 +5,25 @@ import WordList from './popups/WordList';
 import Winner from './popups/Winner';
 import NoWinner from './popups/NoWinner';
 
-import {Card} from '@material-ui/core';
+import {Card, CardContent} from '@material-ui/core';
 
-const PopUp = ({popupVariant, setPopupVariant, playerList, drawer}) => {
-  const variables = {playerList, drawer, setPopupVariant};
-
-  console.log('popupVariant :>> ', popupVariant);
+const PopUp = (props) => {
+  const popupVariant = props.popupVariant;
   return (
     <Card>
-      {popupVariant === 'preWordList' ?
-        <PreWordList {...variables}/> : null}
+      <CardContent style={{height: '100%'}}>
+        {popupVariant === 'preWordList' ?
+        <PreWordList {...props} /> : null}
 
-      {popupVariant === 'wordList' ?
-         <WordList {...variables} /> : console.log(null)}
+        {popupVariant === 'wordList' ?
+         <WordList {...props} /> : null}
 
-      {popupVariant === 'winner' ?
-        <Winner {...variables}/> : null}
+        {popupVariant === 'winner' ?
+        <Winner {...props}/> : null}
 
-      {popupVariant === 'noWinner' ?
-       <NoWinner {...variables}/> : null}
+        {popupVariant === 'noWinner' ?
+       <NoWinner {...props}/> : null}
+      </CardContent>
     </Card>
   );
 };

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ReactPainter} from 'react-painter';
+import randomWords from 'random-words';
 
 import {useRound} from '../../hooks/roundHook';
 
@@ -9,9 +10,11 @@ import PopUp from './PopUp';
 import SideBar from './SideBar';
 
 const MultiPlayer = () => {
-  const [popupOpen, setPopupOpen] = useState(true);
   /** preWordList, wordList, winner, noWinner */
   const [popupVariant, setPopupVariant] = useState('preWordList');
+  const [popupOpen, setPopupOpen] = useState(true);
+  const [selectedWord, setSelectedWord] = useState('');
+  const [wordList, setWordList] = useState([]);
 
   const TEST_SETTINGS = {
     letterTimer: 99,
@@ -23,8 +26,11 @@ const MultiPlayer = () => {
       {name: 'yyrterdv', score: 0},
     ],
   };
-
   const playerList= TEST_SETTINGS.playerList;
+
+  useEffect(() => {
+    setWordList(randomWords(5));
+  }, []);
 
   const {nextRound, start, stop, round,
     setRound, selectWord} = useRound(TEST_SETTINGS);
@@ -39,6 +45,8 @@ const MultiPlayer = () => {
           setPopupVariant={setPopupVariant}
           playerList={playerList}
           drawer={round.drawer}
+          wordList={wordList}
+          setWordList={setWordList}
         /> : null}
       </div>
       <div className='canvas'>
