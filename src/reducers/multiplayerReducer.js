@@ -3,12 +3,22 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'INIT_MULTI':
       return action.data;
+
     case 'DECREMENT_TIMERS_MULTI':
       return {...state, timeLeft: action.data};
+
     case 'REVEAL_WORD_MULTI':
       return {...state, visibleWord: state.currentWord.split('')};
+
     case 'REVEAL_LETTER_MULTI':
       return {...state, visibleWord: action.data};
+
+    case 'END_ROUND_MULTI':
+      return {...state, roundInProgress: false};
+
+    case 'START_ROUND_MULTI':
+      return {...state, roundInProgress: true};
+
     case 'NEXT_ROUND_MULTI':
       const updatedState = {
         ...state,
@@ -58,10 +68,11 @@ export const revealLetter = (visible, word) => {
 };
 
 export const endRound = () => {
-
+  dispatch({type: 'END_ROUND_MULTI'});
 };
 
 export const startRound = () => {
+  dispatch({type: 'START_ROUND_MULTI'});
 };
 
 export const initGame = (settings) => {
