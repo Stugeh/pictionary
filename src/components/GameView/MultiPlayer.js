@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ReactPainter} from 'react-painter';
 
 import {useRound} from '../../hooks/roundHook';
@@ -26,7 +26,7 @@ const MultiPlayer = () => {
   const playerList= TEST_SETTINGS.playerList;
 
   const {nextRound, start, stop, round,
-    setRound, selectWord} = useRound(TEST_SETTINGS);
+    setRound, selectWord} = useRound(TEST_SETTINGS, setPopupVariant);
 
   return (
     <div className='gameGrid'>

@@ -2,11 +2,11 @@ import {useState} from 'react';
 import useInterval from 'use-interval';
 
 
-export const useRound = (settings, drawer=0) => {
+export const useRound = (settings, setPopupVariant) => {
   // Init new round
   const [round, setRound] = useState(
       {
-        drawer,
+        drawer: 0,
         inProgress: false,
         roundTimer: settings.roundTimer,
         letterTimer: settings.letterTimer,
@@ -16,7 +16,10 @@ export const useRound = (settings, drawer=0) => {
   );
 
   useInterval(() => {
-    if (round.roundTimer === 0) stop();
+    if (round.roundTimer === 0) {
+      stop();
+      setPopupVariant('noWinner');
+    }
     if (round.inProgress && round.roundTimer !== 0) {
       setRound(decrementTimers(round));
     }
