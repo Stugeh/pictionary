@@ -16,9 +16,9 @@ const TopBar = ({round, setRound, settings, start, stop}) => {
           <b style={{fontSize: 30}}>{round.roundTimer}</b>
         </CountdownCircleTimer>
       </span>
-      <span>
-        {round.visible.map((char) => char)}
-      </span>
+      <div className='visibleWord'>
+        {round.visible.map((char) => `${char} `)}
+      </div>
     </div>
   );
 };

@@ -105,6 +105,14 @@ li {
   margin-top: 10px;
 }
 
+.visibleWord{
+  width: 75%;
+  padding-top: 30px;
+  font-size: 50px;
+  text-align: center;
+}
+
+
 .popUp {
   width: 500px;
   height: 215px;

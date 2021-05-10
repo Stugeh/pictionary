@@ -18,6 +18,7 @@ export const useRound = (settings, setPopupVariant) => {
   useInterval(() => {
     if (round.roundTimer === 0) {
       stop();
+      revealWord();
       setPopupVariant('noWinner');
     }
     if (round.inProgress && round.roundTimer !== 0) {
@@ -75,6 +76,10 @@ export const useRound = (settings, setPopupVariant) => {
 
   const revealLetter = () => {
 
+  };
+
+  const revealWord = () => {
+    setRound({...round, visible: round.word.split('')});
   };
 
   return {nextRound, start, stop, round, setRound, selectWord};
