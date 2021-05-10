@@ -1,18 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
 import {ReactPainter} from 'react-painter';
+import {connect} from 'react-redux';
 
 import {useRound} from '../../hooks/roundHook';
-
+import {initGame} from '../../reducers/multiplayerReducer';
 import TopBar from './TopBar';
 import PopUp from './PopUp';
 import SideBar from './SideBar';
 
-const MultiPlayer = () => {
+const MultiPlayer = (props) => {
   /** preWordList, wordList, winner, noWinner */
   const [popupVariant, setPopupVariant] = useState('preWordList');
   const [popupOpen, setPopupOpen] = useState(true);
 
+  console.log('state :>> ', props);
   const TEST_SETTINGS = {
     letterTimer: 99,
     roundTimer: 5,
@@ -23,25 +25,21 @@ const MultiPlayer = () => {
       {name: 'yyrterdv', score: 0},
     ],
   };
+
+  console.log(`props.initGame`, props.initGame);
+  props.initGame(TEST_SETTINGS);
+
+
   const playerList= TEST_SETTINGS.playerList;
 
-  const {nextRound, start, stop, round,
-    setRound, selectWord} = useRound(TEST_SETTINGS, setPopupVariant);
+  // const {round} = useRound(TEST_SETTINGS);
 
   return (
     <div className='gameGrid'>
-      <TopBar round={round} settings={TEST_SETTINGS} start={start} stop={stop}/>
+      {/* <TopBar/>
       {!round.inProgress ?
           <div className='popUp'>
-            <PopUp
-              popupVariant={popupVariant}
-              setPopupVariant={setPopupVariant}
-              playerList={playerList}
-              drawer={round.drawer}
-              setPopupOpen={setPopupOpen}
-              start={start}
-              selectWord={selectWord}
-            />
+            <PopUp/>
           </div> : null}
       <div className='canvas'>
         <ReactPainter
@@ -52,9 +50,14 @@ const MultiPlayer = () => {
           )}
         />
       </div>
-      <SideBar playerList={TEST_SETTINGS.playerList}/>
+      <SideBar playerList={TEST_SETTINGS.playerList}/> */}
     </div>
   );
 };
 
-export default MultiPlayer;
+const mapStateToProps = (state) => ({game: state.game});
+const mapDispatchToProps = {
+  initGame: () => ({type: 'INIT_MULTI'}),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MultiPlayer);

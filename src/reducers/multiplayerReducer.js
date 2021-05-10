@@ -38,6 +38,8 @@ const reducer = (state = {}, action) => {
         currentRound: state.currentRound + 1,
       };
       return updatedState;
+
+    default: return state;
   }
 };
 

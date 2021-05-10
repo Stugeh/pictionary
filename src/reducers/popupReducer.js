@@ -3,3 +3,6 @@ const reducer = (state={}, action) => {
     case 'INIT_POPUPS':
   }
 };
+
+
+export default reducer;
