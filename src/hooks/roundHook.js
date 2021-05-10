@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import useInterval from 'use-interval';
 
 
@@ -16,15 +16,18 @@ export const useRound = (settings, setPopupVariant) => {
   );
 
   useInterval(() => {
-    if (round.roundTimer === 0) {
-      stop();
-      revealWord();
+    if (round.inProgress && round.roundTimer === 0) {
       setPopupVariant('noWinner');
+      revealWord();
+      stop();
     }
     if (round.inProgress && round.roundTimer !== 0) {
       setRound(decrementTimers(round));
     }
   }, 1000);
+
+  useEffect(() => {
+  }, [round]);
 
   const decrementTimers = () => {
     const updatedRound = {
@@ -79,8 +82,12 @@ export const useRound = (settings, setPopupVariant) => {
   };
 
   const revealWord = () => {
+    console.log(`round`, round);
+    console.log(`word`, round.word);
+    console.log('visible :>> ', round.visible);
     setRound({...round, visible: round.word.split('')});
+    console.log(`round.visible`, round.word.split(''));
   };
-
+  console.log('aaaround.word :>> ', round.word);
   return {nextRound, start, stop, round, setRound, selectWord};
 };
