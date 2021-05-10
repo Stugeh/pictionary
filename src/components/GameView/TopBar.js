@@ -5,6 +5,7 @@ import {Button} from '@material-ui/core';
 import {CountdownCircleTimer} from 'react-countdown-circle-timer';
 
 const TopBar = ({round, setRound, settings, start, stop}) => {
+  console.log('round :>> ', round);
   return (
     <div className='topBar'>
       <CountdownCircleTimer
@@ -18,7 +19,9 @@ const TopBar = ({round, setRound, settings, start, stop}) => {
       </CountdownCircleTimer>
       <Button onClick ={ () => start()}>start</Button>
       <Button onClick ={ () => stop()}>stop</Button>
-
+      <span>
+        {round.visible.map((char) => char)}
+      </span>
     </div>
   );
 };

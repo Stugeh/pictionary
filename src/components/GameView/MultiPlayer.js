@@ -12,7 +12,6 @@ const MultiPlayer = () => {
   /** preWordList, wordList, winner, noWinner */
   const [popupVariant, setPopupVariant] = useState('preWordList');
   const [popupOpen, setPopupOpen] = useState(true);
-  const [selectedWord, setSelectedWord] = useState('');
 
   const TEST_SETTINGS = {
     letterTimer: 99,
@@ -32,16 +31,18 @@ const MultiPlayer = () => {
   return (
     <div className='gameGrid'>
       <TopBar round={round} settings={TEST_SETTINGS} start={start} stop={stop}/>
-      <div className='popUp'>
-        {popupOpen ?
-        <PopUp
-          popupVariant={popupVariant}
-          setPopupVariant={setPopupVariant}
-          playerList={playerList}
-          drawer={round.drawer}
-          setSelectedWord={setSelectedWord}
-        /> : null}
-      </div>
+      {popupOpen ?
+          <div className='popUp'>
+            <PopUp
+              popupVariant={popupVariant}
+              setPopupVariant={setPopupVariant}
+              playerList={playerList}
+              drawer={round.drawer}
+              setPopupOpen={setPopupOpen}
+              start={start}
+              selectWord={selectWord}
+            />
+          </div> : null}
       <div className='canvas'>
         <ReactPainter
           height={3000}

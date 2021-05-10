@@ -3,7 +3,7 @@ import useInterval from 'use-interval';
 
 
 // max value is the value the timer is reset to if it hits 0
-const decrement = (value, maxVal) => {
+const decrement = (value, maxVal, timerType) => {
   const newVal = value-1;
   return newVal === -1 ? maxVal : newVal;
 };
@@ -17,7 +17,7 @@ export const useRound = (settings, drawer=0) => {
         roundTimer: settings.roundTimer,
         letterTimer: settings.letterTimer,
         word: '',
-        visible: '',
+        visible: [],
       },
   );
 
@@ -33,8 +33,8 @@ export const useRound = (settings, drawer=0) => {
       ...round,
       visible: round.letterTimer === 1 ?
       revealLetter(round.visible) : round.visible,
-      roundTimer: decrement(round.roundTimer, settings.roundTimer),
-      letterTimer: decrement(round.letterTimer, settings.letterTimer),
+      roundTimer: decrement(round.roundTimer, settings.roundTimer, 'round'),
+      letterTimer: decrement(round.letterTimer, settings.letterTimer, 'letter'),
     };
     return updatedRound;
   };
@@ -62,7 +62,8 @@ export const useRound = (settings, drawer=0) => {
   };
 
   const selectWord = (word) => {
-    setRound(...round, word);
+    const visible = new Array(word.length).fill('_');
+    setRound({...round, word, visible});
   };
 
   const revealLetter = () => {

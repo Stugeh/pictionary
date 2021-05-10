@@ -5,19 +5,25 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CreateIcon from '@material-ui/icons/Create';
 
-const WordList = ({setSelectedWord}) => {
+const WordList = ({setPopupOpen, start, selectWord}) => {
   const [wordList, setWordList] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
     const initWords = randomWords(5);
     setWordList(initWords);
-    setSelectedWord(initWords[0]);
+    selectWord(initWords[0]);
   }, []);
 
-  const selectWord = (word, index) => {
-    setSelectedWord(word);
+  const handleWordSelect = (word, index) => {
+    selectWord(word);
     setSelectedIndex(index);
+  };
+
+  const startRound = () => {
+    setPopupOpen(false);
+    selectWord(wordList[selectedIndex]);
+    start();
   };
 
   return (
@@ -40,7 +46,7 @@ const WordList = ({setSelectedWord}) => {
             key={word}
             divider={true}
             selected={selectedIndex===index}
-            onClick={() => selectWord(word, index)}
+            onClick={() => handleWordSelect(word, index)}
           >
             <h3 style={{margin: 'auto'}}>
               {word}
@@ -53,6 +59,7 @@ const WordList = ({setSelectedWord}) => {
         variant='contained'
         color='primary'
         style={{backgroundColor: 'green'}}
+        onClick={startRound}
       >
         <h3>Start Drawing</h3>
         <CreateIcon/>
