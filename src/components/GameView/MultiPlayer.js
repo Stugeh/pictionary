@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {ReactPainter} from 'react-painter';
 
 import {useRound} from '../../hooks/roundHook';

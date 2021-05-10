@@ -19,6 +19,13 @@ const reducer = (state = {}, action) => {
     case 'START_ROUND_MULTI':
       return {...state, roundInProgress: true};
 
+    case 'SELECT_WORD':
+      return {
+        ...state,
+        visibleWord: action.data.visibleWord,
+        currentWord: action.data.currentWord,
+      };
+
     case 'NEXT_ROUND_MULTI':
       const updatedState = {
         ...state,
@@ -36,14 +43,29 @@ const reducer = (state = {}, action) => {
 
 /* Action creators */
 
-
-export const nextRound = () => {
-  dispatch({type: 'NEXT_ROUND_MULTI'});
+export const selectWord = (word) => {
+  const visible = new Array(word.length).fill('_');
+  dispatch({
+    type: 'SELECT_WORD',
+    data: {visibleWord: visible, currentWord: word},
+  });
 };
 
 export const decrementTimers = (round, letter) => {
   const updatedTimers = {round: round-1, letter: letter-1};
   dispatch({type: 'DECREMENT_TIMERS_MULTI', data: updatedTimers});
+};
+
+export const nextRound = () => {
+  dispatch({type: 'NEXT_ROUND_MULTI'});
+};
+
+export const startRound = () => {
+  dispatch({type: 'START_ROUND_MULTI'});
+};
+
+export const endRound = () => {
+  dispatch({type: 'END_ROUND_MULTI'});
 };
 
 export const revealWord = () => {
@@ -65,14 +87,6 @@ export const revealLetter = (visible, word) => {
     ];
     dispatch({type: 'REVEAL_LETTER_MULTI', data: newVisible});
   }
-};
-
-export const endRound = () => {
-  dispatch({type: 'END_ROUND_MULTI'});
-};
-
-export const startRound = () => {
-  dispatch({type: 'START_ROUND_MULTI'});
 };
 
 export const initGame = (settings) => {
