@@ -101,7 +101,7 @@ li {
 }
 
 .popUp {
-  width: 300px;
+  width: 500px;
   height: 215px;
   position: absolute;
   text-align: center;
@@ -112,6 +112,10 @@ li {
   background-color: #fff;
   color: black;
   box-shadow: 5px 5px 100px 5px rgb(66, 66, 66);
+}
+
+.Mui-selected{
+  color:green;
 }
 
 .scores{
