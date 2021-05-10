@@ -3,6 +3,10 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'INIT_MULTI':
       return action.data;
+    case 'DECREMENT_TIMERS_MULTI':
+      return {...state, timeLeft: action.data};
+    case 'REVEAL_WORD_MULTI':
+      return {...state, visibleWord: currentWord.split('')};
     case 'NEXT_ROUND_MULTI':
       const updatedState = {
         ...state,
@@ -45,12 +49,13 @@ export const nextRound = () => {
   dispatch({type: 'NEXT_ROUND_MULTI'});
 };
 
-export const decrementTimers = (roundTimer, letterTimer) => {
-
+export const decrementTimers = (round, letter) => {
+  const updatedTimers = {round: round-1, letter: letter-1};
+  dispatch({type: 'DECREMENT_TIMERS_MULTI', data: updatedTimers});
 };
 
 export const revealWord = () => {
-
+  dispatch({type: 'REVEAL_WORD_MULTI'});
 };
 
 export const revealLetter = () => {
