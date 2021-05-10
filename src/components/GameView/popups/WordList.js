@@ -12,12 +12,18 @@ const WordList = ({setPopupOpen, start, selectWord}) => {
   useEffect(() => {
     const initWords = randomWords(5);
     setWordList(initWords);
-    selectWord(initWords[0]);
+    selectWord(initWords[selectedIndex]);
   }, []);
 
   const handleWordSelect = (word, index) => {
     selectWord(word);
     setSelectedIndex(index);
+  };
+
+  const handleRefresh = () =>{
+    const initWords = randomWords(5);
+    setWordList(initWords);
+    selectWord(initWords[selectedIndex]);
   };
 
   const startRound = () => {
@@ -32,7 +38,7 @@ const WordList = ({setPopupOpen, start, selectWord}) => {
         <Button
           variant='contained'
           color='primary'
-          onClick={() => setWordList(randomWords(5))}
+          onClick={handleRefresh}
         >
           <RefreshIcon style={{fontSize: '35px'}}/>
         </Button>

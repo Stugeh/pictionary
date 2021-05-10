@@ -88,6 +88,11 @@ li {
   height: 100%;
   width: 100%;
 }
+
+.roundTimer{
+  float:left;
+}
+
 .sidebar {
   grid-area: sideBar; 
 }

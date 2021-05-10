@@ -2,12 +2,6 @@ import {useState} from 'react';
 import useInterval from 'use-interval';
 
 
-// max value is the value the timer is reset to if it hits 0
-const decrement = (value, maxVal, timerType) => {
-  const newVal = value-1;
-  return newVal === -1 ? maxVal : newVal;
-};
-
 export const useRound = (settings, drawer=0) => {
   // Init new round
   const [round, setRound] = useState(
@@ -31,14 +25,24 @@ export const useRound = (settings, drawer=0) => {
   const decrementTimers = () => {
     const updatedRound = {
       ...round,
-      visible: round.letterTimer === 1 ?
-      revealLetter(round.visible) : round.visible,
-      roundTimer: decrement(round.roundTimer, settings.roundTimer, 'round'),
-      letterTimer: decrement(round.letterTimer, settings.letterTimer, 'letter'),
+      roundTimer: decrement(round.roundTimer, 'round'),
+      letterTimer: decrement(round.letterTimer, 'letter'),
     };
     return updatedRound;
   };
 
+  // max value is the value the timer is reset to if it hits 0
+  const decrement = (value, timerType) => {
+    if (timerType === 'letter' && value === 0) {
+      revealLetter(round.word);
+      return settings.letterTimer;
+    }
+    if (timerType === 'round' && value === 0) {
+      stop();
+      return 0;
+    }
+    return value-1;
+  };
 
   const start = () => {
     setRound({...round, inProgress: true});

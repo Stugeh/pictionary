@@ -31,7 +31,7 @@ const MultiPlayer = () => {
   return (
     <div className='gameGrid'>
       <TopBar round={round} settings={TEST_SETTINGS} start={start} stop={stop}/>
-      {popupOpen ?
+      {!round.inProgress ?
           <div className='popUp'>
             <PopUp
               popupVariant={popupVariant}
