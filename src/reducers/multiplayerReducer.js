@@ -14,7 +14,7 @@ const reducer = (state = {}, action) => {
       return {...state, visibleWord: action.data};
 
     case 'END_ROUND_MULTI':
-      return {...state, roundInProgress: false};
+      return {...state, roundInProgress: false, roundWinner: action.data};
 
     case 'START_ROUND_MULTI':
       return {...state, roundInProgress: true};
@@ -64,8 +64,8 @@ export const startRound = () => {
   dispatch({type: 'START_ROUND_MULTI'});
 };
 
-export const endRound = () => {
-  dispatch({type: 'END_ROUND_MULTI'});
+export const endRound = (winner) => {
+  dispatch({type: 'END_ROUND_MULTI', data: winner});
 };
 
 export const revealWord = () => {
@@ -97,6 +97,7 @@ export const initGame = (settings) => {
     currentWord: '',
     visibleWord: [],
     playerList: settings.playerList,
+    roundWinner: '',
     timeLeft: {
       round: settings.roundTimer,
       letter: settings.letterTimer,
