@@ -1,13 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import Player from './Player';
 import {List, Paper} from '@material-ui/core';
 
-const PlayerList = ({playerList, setPlayerList}) => {
-  const deletePlayer = (player) => {
-    const updatedList = playerList.filter((obj) => obj.name !== player.name);
-    setPlayerList(updatedList);
-  };
-
+const PlayerList = ({playerList}) => {
   return (
     <Paper
       className='playerList'
@@ -17,19 +14,14 @@ const PlayerList = ({playerList, setPlayerList}) => {
         <h2>Player List</h2>
         {playerList.length < 1 ?
           <i>add some players</i> :
-
           playerList.map((player) => (
-            <Player
-              key={player.name}
-              player={player}
-              deletePlayer={deletePlayer}
-            />
+            <Player key={player.name}/>
           ))
         }
-
       </List>
     </Paper>
   );
 };
 
-export default PlayerList;
+const mapStateToProps = (state) => ({playerList: state.multiplayer.playerList});
+export default connect(mapStateToProps)(PlayerList);

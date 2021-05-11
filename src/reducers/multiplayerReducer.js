@@ -56,6 +56,9 @@ const reducer = (state = INITIAL_STATE, action) => {
         currentWord: action.data.currentWord,
       };
 
+    case 'UPDATE_PLAYER_LIST':
+      return {...state, playerList: action.data};
+
     case 'NEXT_ROUND_MULTI':
       const updatedState = {
         ...state,
