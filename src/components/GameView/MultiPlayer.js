@@ -10,22 +10,6 @@ import PopUp from './PopUp';
 import SideBar from './SideBar';
 
 const MultiPlayer = (props) => {
-  /** preWordList, wordList, winner, noWinner */
-  const [popupVariant, setPopupVariant] = useState('preWordList');
-  const [popupOpen, setPopupOpen] = useState(true);
-
-  console.log('state :>> ', props);
-  const TEST_SETTINGS = {
-    letterTimer: 99,
-    roundTimer: 5,
-    roundCount: 999,
-    playerList: [
-      {name: 'asd', score: 0},
-      {name: 'gggg', score: 0},
-      {name: 'yyrterdv', score: 0},
-    ],
-  };
-
   useEffect(() => {
     props.initGame(TEST_SETTINGS);
   }, []);

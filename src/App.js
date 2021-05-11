@@ -12,15 +12,15 @@ import MultiPlayer from './components/GameView/MultiPlayer';
 // App Component function.
 // Stores the state of the app and renders the different views.
 //
-const App = (props) => {
+const App = ({view}) => {
   return (
     <div>
       <div className='gameWindow'>
-        {props.view === 'mainMenu' ? <MainMenu/> : null}
+        {view === 'mainMenu' ? <MainMenu/> : null}
 
-        {props.view === 'gameSetup' ? <GameSetup/> : null}
+        {view === 'setup' ? <GameSetup/> : null}
 
-        {props.view === 'multiPlayer' ? <MultiPlayer/> : null}
+        {view === 'multiPlayer' ? <MultiPlayer/> : null}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SingleSetup = ({setGameView, setActiveMode, activeMode}) => {
+const SingleSetup = () => {
   return (
     <div className='settings'>
 

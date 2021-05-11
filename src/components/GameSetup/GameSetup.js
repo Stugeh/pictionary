@@ -7,17 +7,15 @@ import MultiSettings from './MultiSettings';
 import PlayerList from './PlayerList';
 
 
-const GameSetup = (props) => {
+const GameSetup = ({activeMode}) => {
   return (
     <div className='gameSetup'>
-
       <h1 className='setupHeader'>
         {activeMode.toUpperCase()}
         <ModeToggle />
       </h1>
 
       {activeMode === 'singlePlayer' ? <SingleSettings /> : null}
-
       {activeMode === 'multiPlayer' ? <MultiSettings/> : null}
 
       <PlayerList className='playerList' />
@@ -26,7 +24,7 @@ const GameSetup = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  game: state.game,
+  activeMode: state.menu.activeMode,
 });
 
 

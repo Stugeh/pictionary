@@ -1,5 +1,35 @@
+const SETTINGS_INITIAL = {
+  letterTimer: 10,
+  roundTimer: 90,
+  roundCount: 100,
+  playerList: [
+    {name: 'Tuukka', score: 0},
+    {name: 'Joku muu', score: 0},
+    {name: 'joku kolmas', score: 0},
+  ],
+};
 
-const reducer = (state = {}, action) => {
+const INITIAL_STATE = {
+  currentDrawer: 0,
+  roundInProgress: false,
+  currentRound: 0,
+  currentWord: '',
+  visibleWord: [],
+  playerList: [],
+  roundWinner: '',
+  timeLeft: {
+    round: 90,
+    letter: 15,
+  },
+  settings: {
+    roundCount: 50,
+    roundTimer: 90,
+    letterTimer: 15,
+  },
+};
+
+
+const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'INIT_MULTI':
       return action.data;
@@ -105,7 +135,7 @@ export const revealLetter = (visible, word) => {
   };
 };
 
-export const initGame = (settings) => {
+export const initGame = (settings=SETTINGS_INITIAL) => {
   return (dispatch) => {
     console.log('settings :>> ', settings);
     const newGame = {

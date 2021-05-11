@@ -4,13 +4,11 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 
 import multiplayerReducer from './reducers/multiplayerReducer';
 import popupReducer from './reducers/popupReducer';
-import setUpReducer from './reducers/setUpReducer';
 import menuReducer from './reducers/menuReducer';
 
 const reducer = combineReducers({
-  game: multiplayerReducer,
+  multiplayer: multiplayerReducer,
   popup: popupReducer,
-  setup: setUpReducer,
   menu: menuReducer,
 });
 

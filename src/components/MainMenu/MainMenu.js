@@ -18,7 +18,6 @@ import {switchViewSetup} from '../../reducers/menuReducer';
 // The smaller pieces will eventully be moved to their
 // own component functions in other files.
 //
-
 const MainMenu = ({switchViewSetup}) => {
   return (
     <div className='mainMenu'>
@@ -47,9 +46,6 @@ const playButtonStyle = {
   fontSize: '50px',
   marginTop: '50px',
 };
-
-// const mapDispatchToProps = {switchViewMenu: () =>
-// dispatch(switchViewMenu())};
 
 export default connect(null, {switchViewSetup})(MainMenu);
 
