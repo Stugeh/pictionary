@@ -1,9 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import {Divider, Button} from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
-const PreWordList = ({playerList, drawer, setPopupVariant}) => {
+import {popupWordList} from '../../../reducers/popupReducer';
+
+const PreWordList = ({playerList, drawer, popupWordList}) => {
   return (
     <div style={{padding: '20px'}}>
       <h2>
@@ -13,7 +16,7 @@ const PreWordList = ({playerList, drawer, setPopupVariant}) => {
       <Divider/>
       <Button
         variant='contained'
-        onClick={() => setPopupVariant('wordList')}
+        onClick={popupWordList}
         style={{
           width: '98%',
           color: 'white',
@@ -28,4 +31,11 @@ const PreWordList = ({playerList, drawer, setPopupVariant}) => {
   );
 };
 
-export default PreWordList;
+const mapStateToProps = (state) => ({
+  playerList: state.multiplayer.playerList,
+  drawer: state.multiplayer.currentDrawer,
+});
+
+const mapDispatchToProps = {popupWordList};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PreWordList);
