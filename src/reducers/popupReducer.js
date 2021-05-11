@@ -1,4 +1,4 @@
-const reducer = (state={}, action) => {
+const reducer = (state={variant: 'preWordList', visible: true}, action) => {
   switch (action.type) {
     case 'INIT_POPUPS':
       return {variant: 'preWordList', visible: false};
