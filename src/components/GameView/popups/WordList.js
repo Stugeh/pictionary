@@ -1,18 +1,24 @@
 import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+
 import {Divider, List, ListItem, Button} from '@material-ui/core';
-import randomWords from 'random-words';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CreateIcon from '@material-ui/icons/Create';
 
-const WordList = ({setPopupOpen, start, selectWord}) => {
-  const [wordList, setWordList] = useState([]);
+import {
+  updateWordList, selectWord, startRound,
+} from '../../../reducers/multiplayerReducer';
+
+import {togglePopup} from '../../../reducers/popupReducer';
+
+
+const WordList = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const {updateWordList, selectWord, wordList, togglePopup, startRound} = props;
 
   useEffect(() => {
-    const initWords = randomWords(5);
-    setWordList(initWords);
-    selectWord(initWords[selectedIndex]);
+    updateWordList();
   }, []);
 
   const handleWordSelect = (word, index) => {
@@ -20,16 +26,10 @@ const WordList = ({setPopupOpen, start, selectWord}) => {
     setSelectedIndex(index);
   };
 
-  const handleRefresh = () =>{
-    const initWords = randomWords(5);
-    setWordList(initWords);
-    selectWord(initWords[selectedIndex]);
-  };
-
-  const startRound = () => {
-    setPopupOpen(false);
+  const beginRound = () => {
+    togglePopup();
     selectWord(wordList[selectedIndex]);
-    start();
+    startRound();
   };
 
   return (
@@ -38,7 +38,7 @@ const WordList = ({setPopupOpen, start, selectWord}) => {
         <Button
           variant='contained'
           color='primary'
-          onClick={handleRefresh}
+          onClick={updateWordList}
         >
           <RefreshIcon style={{fontSize: '35px'}}/>
         </Button>
@@ -65,7 +65,7 @@ const WordList = ({setPopupOpen, start, selectWord}) => {
         variant='contained'
         color='primary'
         style={{backgroundColor: 'green'}}
-        onClick={startRound}
+        onClick={beginRound}
       >
         <h3>Start Drawing</h3>
         <CreateIcon/>
@@ -74,4 +74,16 @@ const WordList = ({setPopupOpen, start, selectWord}) => {
   );
 };
 
-export default WordList;
+
+const mapStateToProps = (state) => ({
+  wordList: state.multiplayer.wordList,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  updateWordList: () => dispatch(updateWordList()),
+  togglePopup: () => dispatch(togglePopup()),
+  startRound: () => dispatch(startRound()),
+  selectWord: (word) => dispatch(selectWord(word)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WordList);

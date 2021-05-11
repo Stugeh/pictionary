@@ -17,9 +17,7 @@ const App = ({view}) => {
     <div>
       <div className='gameWindow'>
         {view === 'mainMenu' ? <MainMenu/> : null}
-
         {view === 'setup' ? <GameSetup/> : null}
-
         {view === 'multiplayer' ? <MultiPlayer/> : null}
       </div>
     </div>

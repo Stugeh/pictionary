@@ -27,5 +27,4 @@ const mapStateToProps = (state) => ({
   activeMode: state.menu.activeMode,
 });
 
-
 export default connect(mapStateToProps)(GameSetup);

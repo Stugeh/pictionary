@@ -22,7 +22,7 @@ export const initPopup = () => {
   };
 };
 
-export const popuopNoWin = () => {
+export const popupNoWin = () => {
   return (dispatch) => {
     dispatch({type: 'NO_WIN_POPUP'});
   };

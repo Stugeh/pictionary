@@ -3,13 +3,11 @@ import React, {useState, useEffect} from 'react';
 import {ReactPainter} from 'react-painter';
 import {connect} from 'react-redux';
 
-import {useRound} from '../../hooks/roundHook';
 import TopBar from './TopBar';
 import PopUp from './PopUp';
 import SideBar from './SideBar';
 
 const MultiPlayer = ({game}) => {
-  console.log('game :>> ', game);
   return (
     <div className='gameGrid'>
       <TopBar/>

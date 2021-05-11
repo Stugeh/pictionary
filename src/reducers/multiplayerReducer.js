@@ -1,3 +1,5 @@
+import randomWords from 'random-words';
+
 // const INITIAL_STATE = {
 //   currentDrawer: 0,
 //   roundInProgress: false,
@@ -23,6 +25,7 @@ const DEV_STATE = {
   currentRound: 0,
   currentWord: '',
   visibleWord: [],
+  wordList: [],
   playerList: [
     {name: 'tuukka', score: 0},
     {name: 'tuukka2', score: 0},
@@ -30,12 +33,12 @@ const DEV_STATE = {
   roundWinner: '',
   timeLeft: {
     round: 90,
-    letter: 15,
+    letter: 5,
   },
   settings: {
     roundCount: 50,
     roundTimer: 90,
-    letterTimer: 15,
+    letterTimer: 5,
   },
 };
 
@@ -46,7 +49,13 @@ const reducer = (state = DEV_STATE, action) => {
       return action.data;
 
     case 'DECREMENT_TIMERS_MULTI':
-      return {...state, timeLeft: action.data};
+      return {
+        ...state,
+        timeLeft: {
+          round: state.timeLeft.round -1,
+          letter: state.timeLeft.letter -1,
+        },
+      };
 
     case 'REVEAL_WORD_MULTI':
       return {...state, visibleWord: state.currentWord.split('')};
@@ -60,6 +69,15 @@ const reducer = (state = DEV_STATE, action) => {
     case 'START_ROUND_MULTI':
       return {...state, roundInProgress: true};
 
+    case 'RESET_LETTER_TIMER':
+      return {
+        ...state,
+        timeLeft: {
+          ...state.timeLeft,
+          letter: state.settings.letterTimer,
+        },
+      };
+
     case 'SELECT_WORD':
       return {
         ...state,
@@ -69,6 +87,9 @@ const reducer = (state = DEV_STATE, action) => {
 
     case 'UPDATE_PLAYER_LIST':
       return {...state, playerList: action.data};
+
+    case 'UPDATE_WORD_LIST':
+      return {...state, wordList: action.data};
 
     case 'NEXT_ROUND_MULTI':
       const updatedState = {
@@ -99,10 +120,26 @@ export const selectWord = (word) => {
   };
 };
 
-export const decrementTimers = (round, letter) => {
+export const updateWordList = () => {
   return (dispatch) => {
-    const updatedTimers = {round: round-1, letter: letter-1};
-    dispatch({type: 'DECREMENT_TIMERS_MULTI', data: updatedTimers});
+    const wordList = randomWords(5);
+    dispatch({
+      type: 'UPDATE_WORD_LIST',
+      data: wordList,
+    });
+    dispatch(selectWord(wordList[0]));
+  };
+};
+
+export const decrementTimers = () => {
+  return (dispatch) => {
+    dispatch({type: 'DECREMENT_TIMERS_MULTI'});
+  };
+};
+
+export const resetLetterTimer = () => {
+  return (dispatch) => {
+    dispatch({type: 'RESET_LETTER_TIMER'});
   };
 };
 
@@ -118,7 +155,7 @@ export const startRound = () => {
   };
 };
 
-export const endRound = (winner) => {
+export const endRound = (winner='') => {
   return (dispatch) => {
     dispatch({type: 'END_ROUND_MULTI', data: winner});
   };
@@ -138,14 +175,16 @@ export const updatePlayerList = (newPlayerList) => {
 
 export const revealLetter = (visible, word) => {
   return (dispatch) => {
-    const availableIndexes = [];
-    const i = visible.indexOf('_');
+    let availableIndexes = [];
+    let i = visible.indexOf('_');
     while (i != -1) {
-      availableIndexes.push(i);
+      availableIndexes = availableIndexes.concat(i);
       i = visible.indexOf('_', i + 1);
     }
+    console.log(availableIndexes);
     if (availableIndexes.length > 0) {
-      const randomIndex = Math.floor(Math.random() * availableIndexes.length);
+      const rng = Math.floor(Math.random() * availableIndexes.length);
+      const randomIndex = availableIndexes.pop(rng);
       const newVisible = [
         ...visible,
         visible[randomIndex] = word[randomIndex],
