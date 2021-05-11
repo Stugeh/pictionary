@@ -1,13 +1,13 @@
-const SETTINGS_INITIAL = {
-  letterTimer: 10,
-  roundTimer: 90,
-  roundCount: 100,
-  playerList: [
-    {name: 'Tuukka', score: 0},
-    {name: 'Joku muu', score: 0},
-    {name: 'joku kolmas', score: 0},
-  ],
-};
+// const SETTINGS_INITIAL = {
+//   letterTimer: 10,
+//   roundTimer: 90,
+//   roundCount: 100,
+//   playerList: [
+//     {name: 'Tuukka', score: 0},
+//     {name: 'Joku muu', score: 0},
+//     {name: 'joku kolmas', score: 0},
+//   ],
+// };
 
 const INITIAL_STATE = {
   currentDrawer: 0,
@@ -144,7 +144,7 @@ export const revealLetter = (visible, word) => {
   };
 };
 
-export const initGame = (settings=SETTINGS_INITIAL) => {
+export const initGame = (settings) => {
   return (dispatch) => {
     const newGame = {
       currentDrawer: 0,

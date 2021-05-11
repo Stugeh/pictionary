@@ -1,19 +1,21 @@
 /* eslint no-unused-vars: ["error", { "ignoreRestSiblings": true }]*/
 import React from 'react';
 import {connect} from 'react-redux';
-import {useField} from '../../hooks/formHook';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import {TextField, Button} from '@material-ui/core';
-import {updatePlayerList} from '../../reducers/multiplayerReducer';
 
-const MultiSetup = ({playerList, updatePlayerList}) => {
+import {useField} from '../../hooks/formHook';
+import {switchViewMP} from '../../reducers/menuReducer';
+import {initGame, updatePlayerList} from '../../reducers/multiplayerReducer';
+
+const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
   const {
-    reset: roundTimerReset, ...roundTimer} = useField('number', 'seconds');
+    reset: roundTimerReset, ...roundTimer} = useField('number', '90 seconds');
   const {
-    reset: letterTimerReset, ...letterTimer} = useField('number', 'seconds');
+    reset: letterTimerReset, ...letterTimer} = useField('number', '15 seconds');
   const {
-    reset: roundCountReset, ...roundCount} = useField('number', 'rounds');
+    reset: roundCountReset, ...roundCount} = useField('number', '50 rounds');
   const {
     reset: playerEntryReset, ...playerEntry} = useField('text', 'nickname');
 
@@ -37,7 +39,8 @@ const MultiSetup = ({playerList, updatePlayerList}) => {
       playerList,
     };
     initGame(newSettings);
-    setGameView('multiPlayer');
+    console.log('newSettings :>> ', newSettings);
+    switchViewMP();
   };
 
   return (
@@ -59,6 +62,7 @@ const MultiSetup = ({playerList, updatePlayerList}) => {
         <TextField {...roundCount}/>
         <div className='play'>
           <Button
+            onClick={startGame}
             variant='contained'
             style={playButtonStyle}
             color='primary'
@@ -86,6 +90,7 @@ const playButtonStyle = {
 const mapStateToProps = (state) => ({playerList: state.multiplayer.playerList});
 const mapDispatchToProps = (dispatch) => {
   return {
+    switchViewMP: () => dispatch(switchViewMP()),
     initGame: (settings) => dispatch(initGame(settings)),
     updatePlayerList: (newList) => dispatch(updatePlayerList(newList)),
   };
