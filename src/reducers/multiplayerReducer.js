@@ -23,8 +23,7 @@ const DEV_STATE = {
   currentDrawer: 0,
   roundInProgress: false,
   currentRound: 0,
-  currentWord: '',
-  visibleWord: [],
+  word: [],
   wordList: [],
   playerList: [
     {name: 'tuukka', score: 0},
@@ -58,10 +57,19 @@ const reducer = (state = DEV_STATE, action) => {
       };
 
     case 'REVEAL_WORD_MULTI':
-      return {...state, visibleWord: state.currentWord.split('')};
-
+      const revealedWord = state.word
+          .map((letter) => letter.visible=true);
+      return {...state, word: revealedWord};
+    // TODO make this more efficient
     case 'REVEAL_LETTER_MULTI':
-      return {...state, visibleWord: action.data};
+      const availableIdxs = state.word
+          .map((letter, index) => (!letter.visible ? index : null));
+      const randIdx = Math.floor(Math.random() * availableIdxs.length);
+      const idxToShow = availableIdxs[randIdx];
+      const newWord = state.word
+          .map((letter, index) => index===idxToShow ?
+            {...letter, visible: true} : letter);
+      return {...state, word: newWord};
 
     case 'END_ROUND_MULTI':
       return {...state, roundInProgress: false, roundWinner: action.data};
@@ -81,8 +89,7 @@ const reducer = (state = DEV_STATE, action) => {
     case 'SELECT_WORD':
       return {
         ...state,
-        visibleWord: action.data.visibleWord,
-        currentWord: action.data.currentWord,
+        word: action.data.word,
       };
 
     case 'UPDATE_PLAYER_LIST':
@@ -112,10 +119,12 @@ const reducer = (state = DEV_STATE, action) => {
 
 export const selectWord = (word) => {
   return (dispatch) => {
-    const visible = new Array(word.length).fill('_');
+    const newWord = word
+        .split('')
+        .map((char) => ({char: char, visible: false}));
     dispatch({
       type: 'SELECT_WORD',
-      data: {visibleWord: visible, currentWord: word},
+      data: {word: newWord},
     });
   };
 };
@@ -173,26 +182,12 @@ export const updatePlayerList = (newPlayerList) => {
   };
 };
 
-export const revealLetter = (visible, word) => {
+export const revealLetter = (word) => {
   return (dispatch) => {
-    let availableIndexes = [];
-    let i = visible.indexOf('_');
-    while (i != -1) {
-      availableIndexes = availableIndexes.concat(i);
-      i = visible.indexOf('_', i + 1);
-    }
-    console.log(availableIndexes);
-    if (availableIndexes.length > 0) {
-      const rng = Math.floor(Math.random() * availableIndexes.length);
-      const randomIndex = availableIndexes.pop(rng);
-      const newVisible = [
-        ...visible,
-        visible[randomIndex] = word[randomIndex],
-      ];
-      dispatch({type: 'REVEAL_LETTER_MULTI', data: newVisible});
-    }
+    dispatch({type: 'REVEAL_LETTER_MULTI'});
   };
 };
+
 
 export const initGame = (settings) => {
   return (dispatch) => {

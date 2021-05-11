@@ -42,7 +42,7 @@ const TopBar = (props) => {
         </CountdownCircleTimer>
       </span>
       <div className='visibleWord'>
-        {game.visibleWord.map((char) => `${char} `)}
+        {game.word.map((letter) => letter.visible ? `${letter.char} `: '_ ')}
       </div>
     </div>
   );
