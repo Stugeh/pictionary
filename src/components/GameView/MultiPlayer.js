@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ReactPainter} from 'react-painter';
 import {connect} from 'react-redux';
 
@@ -26,8 +26,9 @@ const MultiPlayer = (props) => {
     ],
   };
 
-  console.log(`props.initGame`, props.initGame);
-  props.initGame(TEST_SETTINGS);
+  useEffect(() => {
+    props.initGame(TEST_SETTINGS);
+  }, []);
 
 
   const playerList= TEST_SETTINGS.playerList;
@@ -56,8 +57,9 @@ const MultiPlayer = (props) => {
 };
 
 const mapStateToProps = (state) => ({game: state.game});
-const mapDispatchToProps = {
-  initGame: () => ({type: 'INIT_MULTI'}),
+
+const mapDispatchToProps = (dispatch) => {
+  return {initGame: (settings) => dispatch(initGame(settings))};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MultiPlayer);
