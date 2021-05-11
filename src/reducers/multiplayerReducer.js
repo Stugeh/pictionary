@@ -30,7 +30,6 @@ const INITIAL_STATE = {
 
 
 const reducer = (state = INITIAL_STATE, action) => {
-  console.log('action.data :>> ', action.data);
   switch (action.type) {
     case 'INIT_MULTI':
       return action.data;
@@ -121,7 +120,6 @@ export const revealWord = () => {
 };
 
 export const updatePlayerList = (newPlayerList) => {
-  console.log('newPlayerList :>> ', newPlayerList);
   return (dispatch) => {
     dispatch({type: 'UPDATE_PLAYER_LIST', data: newPlayerList});
   };
@@ -148,7 +146,6 @@ export const revealLetter = (visible, word) => {
 
 export const initGame = (settings=SETTINGS_INITIAL) => {
   return (dispatch) => {
-    console.log('settings :>> ', settings);
     const newGame = {
       currentDrawer: 0,
       roundInProgress: false,

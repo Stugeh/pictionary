@@ -15,7 +15,7 @@ const PlayerList = ({playerList}) => {
         {playerList.length < 1 ?
           <i>add some players</i> :
           playerList.map((player) => (
-            <Player key={player.name}/>
+            <Player key={player.name} name={player.name}/>
           ))
         }
       </List>
