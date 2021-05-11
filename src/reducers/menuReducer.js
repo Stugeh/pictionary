@@ -21,3 +21,53 @@ const reducer = (state = {}, action) => {
       return {...state, view: 'singlePlayer'};
   }
 };
+
+export const initMenu = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'INIT_MENU',
+    });
+  };
+};
+
+export const switchMode = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'MODE_SWITCH',
+    });
+  };
+};
+
+export const switchViewMenu = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'VIEW_MAIN_MENU',
+    });
+  };
+};
+
+export const switchViewSetup = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'VIEW_SETUP',
+    });
+  };
+};
+
+export const switchViewMP = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'VIEW_MULTIPLAYER',
+    });
+  };
+};
+
+export const switchViewSP = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'VIEW_SINGLEPLAYER',
+    });
+  };
+};
+
+export default reducer;

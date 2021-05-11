@@ -10,8 +10,6 @@ import MultiPlayer from './components/GameView/MultiPlayer';
 //
 const App = () => {
   // State variables
-  const [gameView, setGameView] = useState('multiPlayer');
-  const [activeMode, setActiveMode] = useState('singlePlayer');
   const [settings, setSettings] = useState({});
 
   return (
