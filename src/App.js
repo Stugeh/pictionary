@@ -20,7 +20,7 @@ const App = ({view}) => {
 
         {view === 'setup' ? <GameSetup/> : null}
 
-        {view === 'multiPlayer' ? <MultiPlayer/> : null}
+        {view === 'multiplayer' ? <MultiPlayer/> : null}
       </div>
     </div>
   );

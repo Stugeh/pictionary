@@ -1,4 +1,4 @@
-const INITIAL_STATE = {view: 'mainMenu', activeMode: 'singlePlayer'};
+const INITIAL_STATE = {view: 'multiplayer', activeMode: 'singlePlayer'};
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

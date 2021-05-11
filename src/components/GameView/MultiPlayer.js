@@ -4,18 +4,16 @@ import {ReactPainter} from 'react-painter';
 import {connect} from 'react-redux';
 
 import {useRound} from '../../hooks/roundHook';
-import {initGame} from '../../reducers/multiplayerReducer';
 import TopBar from './TopBar';
 import PopUp from './PopUp';
 import SideBar from './SideBar';
 
-const MultiPlayer = (props) => {
-  // const {round} = useRound(TEST_SETTINGS);
-
+const MultiPlayer = ({game}) => {
+  console.log('game :>> ', game);
   return (
     <div className='gameGrid'>
-      {/* <TopBar/>
-      {!round.inProgress ?
+      <TopBar/>
+      {!game.roundInProgress ?
           <div className='popUp'>
             <PopUp/>
           </div> : null}
@@ -28,11 +26,11 @@ const MultiPlayer = (props) => {
           )}
         />
       </div>
-      <SideBar playerList={TEST_SETTINGS.playerList}/> */}
+      <SideBar playerList={game.playerList}/>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({game: state.game});
+const mapStateToProps = (state) => ({game: state.multiplayer});
 
 export default connect(mapStateToProps)(MultiPlayer);

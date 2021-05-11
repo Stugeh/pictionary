@@ -1,21 +1,32 @@
-// const SETTINGS_INITIAL = {
-//   letterTimer: 10,
-//   roundTimer: 90,
-//   roundCount: 100,
-//   playerList: [
-//     {name: 'Tuukka', score: 0},
-//     {name: 'Joku muu', score: 0},
-//     {name: 'joku kolmas', score: 0},
-//   ],
+// const INITIAL_STATE = {
+//   currentDrawer: 0,
+//   roundInProgress: false,
+//   currentRound: 0,
+//   currentWord: '',
+//   visibleWord: [],
+//   playerList: [],
+//   roundWinner: '',
+//   timeLeft: {
+//     round: 90,
+//     letter: 15,
+//   },
+//   settings: {
+//     roundCount: 50,
+//     roundTimer: 90,
+//     letterTimer: 15,
+//   },
 // };
 
-const INITIAL_STATE = {
+const DEV_STATE = {
   currentDrawer: 0,
   roundInProgress: false,
   currentRound: 0,
   currentWord: '',
   visibleWord: [],
-  playerList: [],
+  playerList: [
+    {name: 'tuukka', score: 0},
+    {name: 'tuukka2', score: 0},
+  ],
   roundWinner: '',
   timeLeft: {
     round: 90,
@@ -29,7 +40,7 @@ const INITIAL_STATE = {
 };
 
 
-const reducer = (state = INITIAL_STATE, action) => {
+const reducer = (state = DEV_STATE, action) => {
   switch (action.type) {
     case 'INIT_MULTI':
       return action.data;

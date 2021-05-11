@@ -39,10 +39,9 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
       playerList,
     };
     initGame(newSettings);
-    console.log('newSettings :>> ', newSettings);
     switchViewMP();
   };
-
+  // TODO disable play button when player list is empty or any rule 0/undefined
   return (
     <div className='settings' style={{textAlign: 'center'}}>
 
