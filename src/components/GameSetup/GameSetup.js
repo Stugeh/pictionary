@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
 
 import ModeToggle from '../ModeToggle';
 import SingleSettings from './SingleSettings';
@@ -6,38 +7,27 @@ import MultiSettings from './MultiSettings';
 import PlayerList from './PlayerList';
 
 
-const GameSetup = ({setGameView, setActiveMode, activeMode, setSettings}) => {
-  const [playerList, setPlayerList] = useState([]);
+const GameSetup = (props) => {
   return (
     <div className='gameSetup'>
 
       <h1 className='setupHeader'>
         {activeMode.toUpperCase()}
-        <ModeToggle setActiveMode={setActiveMode} activeMode={activeMode} />
+        <ModeToggle />
       </h1>
 
-      {activeMode === 'singlePlayer' ?
-        <SingleSettings
-          setSettings={setSettings}
-          setGameView={setGameView}
-        />:null}
+      {activeMode === 'singlePlayer' ? <SingleSettings /> : null}
 
-      {activeMode === 'multiPlayer' ?
-        <MultiSettings
-          setSettings={setSettings}
-          setGameView={setGameView}
-          setPlayerList={setPlayerList}
-          playerList={playerList}
-        />:null}
+      {activeMode === 'multiPlayer' ? <MultiSettings/> : null}
 
-      <PlayerList
-        className='playerList'
-        playerList={playerList}
-        setPlayerList={setPlayerList}
-      />
-
+      <PlayerList className='playerList' />
     </div>
   );
 };
 
-export default GameSetup;
+const mapStateToProps = (state) => ({
+  game: state.game,
+});
+
+
+export default connect(mapStateToProps)(GameSetup);

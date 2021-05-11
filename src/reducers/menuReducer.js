@@ -1,7 +1,9 @@
-const reducer = (state = {}, action) => {
+const INITIAL_STATE = {view: 'mainMenu', activeMode: 'singlePlayer'};
+
+const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'INIT_MENU':
-      return {view: 'mainMenu', activeMode: 'singlePlayer'};
+      return INITIAL_STATE;
 
     case 'MODE_SWITCH':
       const newMode =
@@ -19,6 +21,8 @@ const reducer = (state = {}, action) => {
 
     case 'VIEW_SINGLEPLAYER':
       return {...state, view: 'singlePlayer'};
+
+    default: return state;
   }
 };
 

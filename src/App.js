@@ -1,5 +1,9 @@
-import React, {useState} from 'react';
 import './App.css';
+import React from 'react';
+import {connect} from 'react-redux';
+
+import {initMenu} from './reducers/menuReducer';
+
 import MainMenu from './components/MainMenu/MainMenu';
 import GameSetup from './components/GameSetup/GameSetup';
 import MultiPlayer from './components/GameView/MultiPlayer';
@@ -8,41 +12,20 @@ import MultiPlayer from './components/GameView/MultiPlayer';
 // App Component function.
 // Stores the state of the app and renders the different views.
 //
-const App = () => {
-  // State variables
-  const [settings, setSettings] = useState({});
-
+const App = (props) => {
   return (
     <div>
       <div className='gameWindow'>
-        {gameView === 'mainMenu' ? (
-          <MainMenu
-            setGameView={setGameView}
-            setActiveMode={setActiveMode}
-            activeMode={activeMode}
-          />
-        ):null}
+        {props.view === 'mainMenu' ? <MainMenu/> : null}
 
-        {gameView === 'gameSetup' ? (
-          <GameSetup
-            setGameView={setGameView}
-            setActiveMode={setActiveMode}
-            activeMode={activeMode}
-            setSettings={setSettings}
-          />
-        ):null}
+        {props.view === 'gameSetup' ? <GameSetup/> : null}
 
-        {gameView === 'multiPlayer' ? (
-          <MultiPlayer
-            setGameView={setGameView}
-            setActiveMode={setActiveMode}
-            activeMode={activeMode}
-            settings={settings}
-          />
-        ):null}
+        {props.view === 'multiPlayer' ? <MultiPlayer/> : null}
       </div>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => ({view: state.menu.view});
+
+export default connect(mapStateToProps, {initMenu})(App);

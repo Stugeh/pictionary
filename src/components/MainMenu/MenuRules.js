@@ -1,5 +1,25 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import {Paper, Divider} from '@material-ui/core';
+
+
+const MenuRules = (props) => {
+  return (
+    <Paper elevation={24} variant='outlined' style={paperStyle}>
+      <h3>{props.activeMode.toUpperCase()}</h3>
+      <Divider />
+      {props.activeMode === 'singlePlayer' ? <SinglePlayerRules/> : null}
+      {props.activeMode === 'multiPlayer' ? <MultiPlayerRules/> : null}
+    </Paper>
+  );
+};
+
+const paperStyle ={
+  width: '30%',
+  marginLeft: '35%',
+  marginTop: '10px',
+};
 
 const SinglePlayerRules = () => (
   <ol>
@@ -28,21 +48,7 @@ const MultiPlayerRules = () => (
   </ol>
 );
 
-const MenuRules = ({activeMode}) => {
-  const paperStyle ={
-    width: '30%',
-    marginLeft: '35%',
-    marginTop: '10px',
-  };
+const mapStateToProps = (state) => ({activeMode: state.menu.activeMode});
 
-  return (
-    <Paper elevation={24} variant='outlined' style={paperStyle}>
-      <h3>{activeMode.toUpperCase()}</h3>
-      <Divider />
-      {activeMode === 'singlePlayer' ? <SinglePlayerRules/> : <></>}
-      {activeMode === 'multiPlayer' ? <MultiPlayerRules/> : <></>}
-    </Paper>
-  );
-};
 
-export default MenuRules;
+export default connect(mapStateToProps)(MenuRules);

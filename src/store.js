@@ -3,15 +3,15 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 import multiplayerReducer from './reducers/multiplayerReducer';
-// import popupReducer from './reducers/popupReducer';
-// import setUpReducer from './reducers/setUpReducer';
-// import menuReducer from './reducers/menuReducer';
+import popupReducer from './reducers/popupReducer';
+import setUpReducer from './reducers/setUpReducer';
+import menuReducer from './reducers/menuReducer';
 
 const reducer = combineReducers({
   game: multiplayerReducer,
-//   popup: popupReducer,
-//   setup: setUpReducer,
-//   menu: menuReducer,
+  popup: popupReducer,
+  setup: setUpReducer,
+  menu: menuReducer,
 });
 
 const Store = createStore(
