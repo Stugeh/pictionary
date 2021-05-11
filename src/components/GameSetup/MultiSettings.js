@@ -1,11 +1,13 @@
 /* eslint no-unused-vars: ["error", { "ignoreRestSiblings": true }]*/
 import React from 'react';
+import {connect} from 'react-redux';
 import {useField} from '../../hooks/formHook';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import {TextField, Button} from '@material-ui/core';
+import {updatePlayerList} from '../../reducers/multiplayerReducer';
 
-const MultiSetup = ({setSettings, setPlayerList, playerList, setGameView}) => {
+const MultiSetup = ({playerList, updatePlayerList}) => {
   const {
     reset: roundTimerReset, ...roundTimer} = useField('number', 'seconds');
   const {
@@ -17,11 +19,11 @@ const MultiSetup = ({setSettings, setPlayerList, playerList, setGameView}) => {
 
   const addPlayer = (e) => {
     e.preventDefault();
-    const newPlayer = {name: playerEntry.value, score: 0};
     if (!playerList.some((player) => player.name === playerEntry.value)) {
-      setPlayerList([...playerList, newPlayer]);
+      const newPlayer = {name: playerEntry.value, score: 0};
+      updatePlayerList([...playerList, newPlayer]);
     } else {
-      // TODO
+      // TODO notification that player already exists
     }
     playerEntryReset();
   };
@@ -34,8 +36,7 @@ const MultiSetup = ({setSettings, setPlayerList, playerList, setGameView}) => {
       roundCount: parseInt(roundCount.value),
       playerList,
     };
-    console.log(`newSettings`, newSettings);
-    setSettings(newSettings);
+    initGame(newSettings);
     setGameView('multiPlayer');
   };
 
@@ -82,5 +83,13 @@ const playButtonStyle = {
   marginTop: '30px',
 };
 
-export default MultiSetup;
+const mapStateToProps = (state) => ({playerList: state.multiplayer.playerList});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initGame: (settings) => dispatch(initGame(settings)),
+    updatePlayerList: (newList) => dispatch(updatePlayerList(newList)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MultiSetup);
 

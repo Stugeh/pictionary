@@ -10,13 +10,6 @@ import PopUp from './PopUp';
 import SideBar from './SideBar';
 
 const MultiPlayer = (props) => {
-  useEffect(() => {
-    props.initGame(TEST_SETTINGS);
-  }, []);
-
-
-  const playerList= TEST_SETTINGS.playerList;
-
   // const {round} = useRound(TEST_SETTINGS);
 
   return (
@@ -42,8 +35,4 @@ const MultiPlayer = (props) => {
 
 const mapStateToProps = (state) => ({game: state.game});
 
-const mapDispatchToProps = (dispatch) => {
-  return {initGame: (settings) => dispatch(initGame(settings))};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MultiPlayer);
+export default connect(mapStateToProps)(MultiPlayer);

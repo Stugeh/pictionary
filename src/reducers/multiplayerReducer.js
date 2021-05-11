@@ -30,6 +30,7 @@ const INITIAL_STATE = {
 
 
 const reducer = (state = INITIAL_STATE, action) => {
+  console.log('action.data :>> ', action.data);
   switch (action.type) {
     case 'INIT_MULTI':
       return action.data;
@@ -116,6 +117,13 @@ export const endRound = (winner) => {
 export const revealWord = () => {
   return (dispatch) => {
     dispatch({type: 'REVEAL_WORD_MULTI'});
+  };
+};
+
+export const updatePlayerList = (newPlayerList) => {
+  console.log('newPlayerList :>> ', newPlayerList);
+  return (dispatch) => {
+    dispatch({type: 'UPDATE_PLAYER_LIST', data: newPlayerList});
   };
 };
 
