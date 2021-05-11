@@ -60,6 +60,7 @@ const reducer = (state = DEV_STATE, action) => {
       const revealedWord = state.word
           .map((letter) => letter.visible=true);
       return {...state, word: revealedWord};
+
     // TODO make this more efficient
     case 'REVEAL_LETTER_MULTI':
       const availableIdxs = state.word
