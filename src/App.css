@@ -87,7 +87,7 @@ li {
 .topBar {
   display: grid;
   grid-area: topBar;
-  grid-template-columns: 0.4fr 0.7fr 0.4fr 0.5fr;
+  grid-template-columns: 0.4fr 0.7fr 0.3fr 0.5fr;
   background-color: rgb(146, 146, 245);
   height: 100%;
   width: 100%;
@@ -101,7 +101,8 @@ li {
 }
 
 .timers {
-  grid-area: timer
+  grid-area: timer;
+  width:100%;
 }
 
 .sidebar {
@@ -165,7 +166,7 @@ li {
   position: absolute;
   top: 10%;
   width: 70px;
-  height:80%;
+  height:630px;
   margin-right: 0;
   z-index: 20;
 }
