@@ -1,5 +1,4 @@
 import randomWords from 'random-words';
-
 import {popupWin} from './popupReducer';
 
 // const INITIAL_STATE = {
@@ -36,6 +35,7 @@ const DEV_STATE = {
     round: 5,
     letter: 5,
   },
+  paletteVisible: false,
   settings: {
     roundCount: 50,
     roundTimer: 5,
@@ -121,6 +121,9 @@ const reducer = (state = DEV_STATE, action) => {
       };
       return updatedState;
 
+    case 'TOGGLE_PALETTE':
+      return {...state, paletteVisible: !state.paletteVisible};
+
     case 'ROUND_WINNER_MULTI':
       // if player name matches action.data the map returns player with
       // updated score
@@ -147,6 +150,12 @@ export const selectWord = (word) => {
       type: 'SELECT_WORD',
       data: {word: newWord},
     });
+  };
+};
+
+export const togglePalette = () => {
+  return (dispatch) => {
+    dispatch({type: 'TOGGLE_PALETTE'});
   };
 };
 

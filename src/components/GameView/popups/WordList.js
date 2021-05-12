@@ -34,14 +34,15 @@ const WordList = (props) => {
 
   return (
     <div>
+      <Button
+        variant='contained'
+        color='primary'
+        onClick={updateWordList}
+        style={{float: 'right'}}
+      >
+        <RefreshIcon style={{fontSize: '35px'}}/>
+      </Button>
       <h1>
-        <Button
-          variant='contained'
-          color='primary'
-          onClick={updateWordList}
-        >
-          <RefreshIcon style={{fontSize: '35px'}}/>
-        </Button>
         Select a word to draw
       </h1>
       <Divider/>

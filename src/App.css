@@ -141,3 +141,15 @@ li {
   padding: 10px;
   text-align: center;
 }
+
+
+.toolBar {
+  grid-area:canvas;
+  width: 70px;
+  height:80%;
+  margin-right: 0;
+  padding-top:10%;
+  font-size: 60px;
+  z-index: 20;
+  position: relative;
+}
