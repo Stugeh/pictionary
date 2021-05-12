@@ -56,9 +56,9 @@ const WordList = (props) => {
             onClick={() => handleWordSelect(word, index)}
           >
             <h3 style={{margin: 'auto'}}>
+              {selectedIndex===index ? <CheckCircleIcon/> : null}
               {word}
             </h3>
-            {selectedIndex===index ? <CheckCircleIcon/> : null}
           </ListItem>
         ))}
       </List>
