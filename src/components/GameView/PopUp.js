@@ -11,7 +11,7 @@ import NoWinner from './popups/NoWinner';
 
 const PopUp = ({popupVariant}) => {
   return (
-    <Card>
+    <Card className='popUp'>
       <CardContent style={{height: '100%'}}>
         {popupVariant === 'preWordList' ? <PreWordList/> : null}
         {popupVariant === 'wordList' ? <WordList/> : null}

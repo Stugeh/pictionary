@@ -10,19 +10,18 @@ import Toolbar from './Toolbar';
 
 const MultiPlayer = ({game}) => {
   const canvasRef = useRef(null);
+  console.log('game.brushSize :>> ', game.brushSize);
   return (
     <div className='gameGrid'>
       <TopBar/>
-      {!game.roundInProgress ?
-          <div className='popUp'>
-            <PopUp/>
-          </div> : null}
+      {!game.roundInProgress ? <PopUp/> : null}
       <Toolbar canvasRef={canvasRef}/>
-      <CanvasDraw className='canvas'
+      <CanvasDraw
+        className='canvas'
         ref={canvasRef}
         lazyRadius={0}
         brushColor={game.brushColor}
-        brushRadius={game.brushRadius}
+        brushRadius={game.brushSize}
       />
       <SideBar playerList={game.playerList}/>
     </div>

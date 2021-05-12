@@ -36,8 +36,8 @@ const DEV_STATE = {
     letter: 5,
   },
   paletteVisible: false,
-  brushRadius: 10,
-  brushSize: '#fff',
+  brushSize: 1,
+  brushColor: '#444',
   settings: {
     roundCount: 50,
     roundTimer: 5,
@@ -108,6 +108,9 @@ const reducer = (state = DEV_STATE, action) => {
     case 'UPDATE_WORD_LIST':
       return {...state, wordList: action.data};
 
+    case 'UPDATE_BRUSH_SIZE':
+      return {...state, brushSize: action.data};
+
     case 'NEXT_ROUND_MULTI':
       // increment current drawer and round, reset timers.
       const updatedState = {
@@ -152,6 +155,12 @@ export const selectWord = (word) => {
       type: 'SELECT_WORD',
       data: {word: newWord},
     });
+  };
+};
+
+export const updateBrushSize = (size) => {
+  return (dispatch) => {
+    dispatch({type: 'UPDATE_BRUSH_SIZE', data: size});
   };
 };
 
