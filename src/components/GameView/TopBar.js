@@ -3,8 +3,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {useInterval} from 'use-interval';
-
-import {CountdownCircleTimer} from 'react-countdown-circle-timer';
+import {ProgressBar} from 'react-progressbar-fancy';
 
 import {popupNoWin} from '../../reducers/popupReducer';
 import {
@@ -31,17 +30,16 @@ const TopBar = (props) => {
 
   return (
     <div className='topBar'>
-      <span className='roundTimer'>
-        <CountdownCircleTimer
-          isPlaying={game.roundInProgress}
-          duration={game.settings.roundTimer}
-          size={70}
-          colors={[['#009000', 0.33], ['#006000', 0.33], ['#A30000']]}
-        >
-          <b style={{fontSize: 30}}>{game.timeLeft.round}</b>
-        </CountdownCircleTimer>
+      <div className='timers'>
+        <span className='roundTimer'>
+          <b>{`${game.timeLeft.round} seconds`}</b>
+          <ProgressBar
+            hideText
+            score={game.timeLeft.round/game.settings.roundTimer*100}
+          />
+        </span>
         <b>{`Round ${game.currentRound}/${game.settings.roundCount}`}</b>
-      </span>
+      </div>
       <div className='visibleWord'>
         {game.word.map((letter) => letter.visible ? `${letter.char} `: '_ ')}
       </div>

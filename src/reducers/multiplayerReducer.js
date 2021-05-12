@@ -32,7 +32,7 @@ const DEV_STATE = {
   ],
   roundWinner: '',
   timeLeft: {
-    round: 5,
+    round: 30,
     letter: 5,
   },
   paletteVisible: false,
@@ -40,7 +40,7 @@ const DEV_STATE = {
   brushColor: '#444',
   settings: {
     roundCount: 50,
-    roundTimer: 5,
+    roundTimer: 30,
     letterTimer: 5,
   },
 };

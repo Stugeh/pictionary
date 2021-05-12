@@ -4,6 +4,7 @@
 }
 body {
   height: 96vh;
+  background-color:#272531;
   padding: 0;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -34,7 +35,7 @@ li {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 90%;
   height: 95vh;
   box-shadow: 6px 6px 6px 6px;
 }
@@ -84,16 +85,23 @@ li {
 }
 
 .topBar {
+  display: grid;
   grid-area: topBar;
+  grid-template-columns: 0.4fr 0.7fr 0.4fr 0.5fr;
   background-color: rgb(146, 146, 245);
   height: 100%;
   width: 100%;
+  grid-template-areas: "timer word . .";
 }
 
 .roundTimer{
-  float:left;
-  padding-left: 10px;
-  padding-top: 10px;
+  width: 300px;
+  padding-bottom: 10px;
+  font-size: 30px;
+}
+
+.timers {
+  grid-area: timer
 }
 
 .sidebar {
@@ -113,7 +121,8 @@ li {
 }
 
 .visibleWord{
-  width: 75%;
+  grid-area: word;
+  width: 100%;
   padding-top: 30px;
   font-size: 50px;
   text-align: center;
@@ -147,6 +156,9 @@ li {
   text-align: center;
 }
 
+.MuiListItemText-root	{
+  font-weight: 100px;
+}
 
 .toolBar {
   grid-area:canvas;

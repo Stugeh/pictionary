@@ -22,11 +22,12 @@ const PlayerScore = ({player, drawer, setRoundWinner}) => {
           }}
         >
           <CheckIcon />
-          correct
+          <b>correct</b>
         </Button>
       </ListItemIcon>
       <ListItemText primary={player.name} />
       <ListItemText
+
         primary={`score: ${player.score}`}
         style={{textAlign: 'right'}}/>
     </ListItem>
