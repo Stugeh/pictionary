@@ -1,5 +1,7 @@
 import randomWords from 'random-words';
 
+import {popupWin} from './popupReducer';
+
 // const INITIAL_STATE = {
 //   currentDrawer: 0,
 //   roundInProgress: false,
@@ -63,13 +65,18 @@ const reducer = (state = DEV_STATE, action) => {
 
     // TODO make this more efficient
     case 'REVEAL_LETTER_MULTI':
+      // save all indexes where the character is hidden to array
       const availableIdxs = state.word
           .map((letter, index) => (!letter.visible ? index : null));
+      // choose a random index within that array
       const randIdx = Math.floor(Math.random() * availableIdxs.length);
+      // index of the letter to reveal
       const idxToShow = availableIdxs[randIdx];
+      // map the updated array to a new word array
       const newWord = state.word
           .map((letter, index) => index===idxToShow ?
             {...letter, visible: true} : letter);
+      // return updated state
       return {...state, word: newWord};
 
     case 'END_ROUND_MULTI':
@@ -100,6 +107,7 @@ const reducer = (state = DEV_STATE, action) => {
       return {...state, wordList: action.data};
 
     case 'NEXT_ROUND_MULTI':
+      // increment current drawer and round, reset timers.
       const updatedState = {
         ...state,
         currentDrawer:
@@ -112,6 +120,17 @@ const reducer = (state = DEV_STATE, action) => {
         currentRound: state.currentRound + 1,
       };
       return updatedState;
+
+    case 'ROUND_WINNER_MULTI':
+      // if player name matches action.data the map returns player with
+      // updated score
+      const updatedPlayerList = state.playerList
+          .map((player) => (action.data === player.name ?
+            {...player, score: player.score + state.timeLeft.round * 100,
+            } : player
+          ));
+      // return state with an updated player list and round winner
+      return {...state, playerList: updatedPlayerList, winner: action.data};
 
     default: return state;
   }
@@ -128,6 +147,14 @@ export const selectWord = (word) => {
       type: 'SELECT_WORD',
       data: {word: newWord},
     });
+  };
+};
+
+export const setRoundWinner = (name) => {
+  return (dispatch) => {
+    dispatch({type: 'ROUND_WINNER_MULTI', data: name});
+    dispatch(endRound());
+    dispatch(popupWin());
   };
 };
 

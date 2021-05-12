@@ -1,15 +1,25 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import CheckIcon from '@material-ui/icons/Check';
 import {ListItem, ListItemIcon, ListItemText, Button} from '@material-ui/core';
 
-const PlayerScore = ({player}) => {
+import {setRoundWinner} from '../../reducers/multiplayerReducer';
+
+const PlayerScore = ({player, drawer, setRoundWinner}) => {
   return (
     <ListItem>
       <ListItemIcon>
         <Button
           color='primary'
           variant='contained'
-          style={{backgroundColor: 'green', marginRight: '10px'}}
+          onClick={
+            player.name!==drawer ?
+              () => setRoundWinner(player.name) : null
+          }
+          style={{
+            backgroundColor: player.name!==drawer ? 'green' : 'gray',
+            marginRight: '10px',
+          }}
         >
           <CheckIcon />
           correct
@@ -23,4 +33,13 @@ const PlayerScore = ({player}) => {
   );
 };
 
-export default PlayerScore;
+const mapStateToProps = (state) => ({
+  drawer: state.multiplayer
+      .playerList[state.multiplayer.currentDrawer].name,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setRoundWinner: (name) => dispatch(setRoundWinner(name)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerScore);
