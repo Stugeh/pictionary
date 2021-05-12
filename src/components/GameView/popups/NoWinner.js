@@ -1,14 +1,24 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import {Button} from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-const NoWinner = ({setPopupVariant}) => {
+import {nextRound} from '../../../reducers/multiplayerReducer';
+import {popupPreWordList} from '../../../reducers/popupReducer';
+
+const NoWinner = ({nextRound, popupPreWordList}) => {
+  const handleNextRound = () => {
+    nextRound();
+    popupPreWordList();
+  };
+
   return (
     <div>
       <h1>Noone guessed the word in time :(</h1>
       <Button
         variant='contained'
-        onClick={() => setPopupVariant('preWordList')}
+        onClick={handleNextRound}
         style={{
           width: '98%',
           color: 'white',
@@ -24,4 +34,6 @@ const NoWinner = ({setPopupVariant}) => {
   );
 };
 
-export default NoWinner;
+const mapDispatchToProps = {nextRound, popupPreWordList};
+
+export default connect(null, mapDispatchToProps)(NoWinner);

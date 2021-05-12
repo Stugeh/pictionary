@@ -40,6 +40,7 @@ const TopBar = (props) => {
         >
           <b style={{fontSize: 30}}>{game.timeLeft.round}</b>
         </CountdownCircleTimer>
+        <b>{`Round ${game.currentRound}/${game.settings.roundCount}`}</b>
       </span>
       <div className='visibleWord'>
         {game.word.map((letter) => letter.visible ? `${letter.char} `: '_ ')}

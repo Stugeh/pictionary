@@ -31,12 +31,12 @@ const DEV_STATE = {
   ],
   roundWinner: '',
   timeLeft: {
-    round: 90,
+    round: 5,
     letter: 5,
   },
   settings: {
     roundCount: 50,
-    roundTimer: 90,
+    roundTimer: 5,
     letterTimer: 5,
   },
 };
@@ -58,7 +58,7 @@ const reducer = (state = DEV_STATE, action) => {
 
     case 'REVEAL_WORD_MULTI':
       const revealedWord = state.word
-          .map((letter) => letter.visible=true);
+          .map((letter) => ({...letter, visible: true}));
       return {...state, word: revealedWord};
 
     // TODO make this more efficient
@@ -103,7 +103,8 @@ const reducer = (state = DEV_STATE, action) => {
       const updatedState = {
         ...state,
         currentDrawer:
-          currentDrawer === state.playerList.length - 1 ? 0 : currentDrawer + 1,
+          state.currentDrawer === state.playerList.length - 1 ?
+            0 : state.currentDrawer + 1,
         timeLeft: {
           round: state.settings.roundTimer,
           letter: state.settings.letterTimer,
@@ -168,6 +169,7 @@ export const startRound = () => {
 export const endRound = (winner='') => {
   return (dispatch) => {
     dispatch({type: 'END_ROUND_MULTI', data: winner});
+    dispatch(revealWord());
   };
 };
 

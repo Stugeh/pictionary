@@ -91,6 +91,8 @@ li {
 
 .roundTimer{
   float:left;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 .sidebar {
