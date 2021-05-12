@@ -10,12 +10,13 @@ const Toolbar = ({canvasRef}) => {
     <div className='toolBar'>
       <Paper
         style={{height: '100%'}}
-        elevation={3}
+        elevation={24}
       >
         <PaletteTwoToneIcon
-          onClick={() => canvasRef.current.clear()}
         /><br/>
-        <DeleteIcon/>
+        <DeleteIcon
+          onClick={() => canvasRef.current.clear()}
+        />
       </Paper>
     </div>
   );

@@ -17,17 +17,10 @@ const MultiPlayer = ({game}) => {
           <div className='popUp'>
             <PopUp/>
           </div> : null}
-      <div className='canvas'>
-        <Toolbar canvasRef={canvasRef}/>
-        <CanvasDraw
-          ref={canvasRef}
-          height='100%'
-          width='100%'
-          undoSteps={30}
-          lineWidth={game.lineWidth}
-          lineColor={game.lineColor}
-        />
-      </div>
+      <Toolbar canvasRef={canvasRef}/>
+      <CanvasDraw className='canvas'
+        ref={canvasRef}
+      />
       <SideBar playerList={game.playerList}/>
     </div>
   );

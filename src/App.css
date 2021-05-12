@@ -36,6 +36,7 @@ li {
   margin-right: auto;
   width: 80%;
   height: 95vh;
+  box-shadow: 6px 6px 6px 6px;
 }
 
 .gameSetup{
@@ -96,11 +97,15 @@ li {
 }
 
 .sidebar {
-  grid-area: sideBar; 
+  grid-area: sideBar;
+  border-left: solid; 
 }
 .canvas {
   grid-area: canvas; 
   overflow: hidden;
+  width:100% !important;
+  height: 100% !important;
+  z-index: 0;
 }
 
 .radioButtons{
@@ -123,7 +128,7 @@ li {
   top: 40%;
   left: 37%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 10;
   background-color: #fff;
   color: black;
   box-shadow: 5px 5px 100px 5px rgb(66, 66, 66);
@@ -145,11 +150,23 @@ li {
 
 .toolBar {
   grid-area:canvas;
+  position: absolute;
+  top: 10%;
   width: 70px;
   height:80%;
   margin-right: 0;
-  padding-top:10%;
-  font-size: 60px;
   z-index: 20;
-  position: relative;
+}
+
+.toolBar .MuiSvgIcon-root {
+  font-size: 60px;
+  margin-left: 5px;
+}
+
+.MuiSvgIcon-root:hover {
+  color: green;
+}
+
+.toolBar .MuiPaper-elevation24 {
+  box-shadow: 6px 6px 6px 6px;
 }
