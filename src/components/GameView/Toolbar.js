@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {Paper} from '@material-ui/core';
+import {Paper, Slider} from '@material-ui/core';
 
-import PaletteTwoToneIcon from '@material-ui/icons/PaletteTwoTone';
+import PaletteIcon from '@material-ui/icons/Palette';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const Toolbar = ({canvasRef}) => {
@@ -12,8 +12,10 @@ const Toolbar = ({canvasRef}) => {
         style={{height: '100%'}}
         elevation={24}
       >
-        <PaletteTwoToneIcon
-        /><br/>
+        <PaletteIcon/><br/>
+
+        <Slider orientation="vertical"/>
+
         <DeleteIcon
           onClick={() => canvasRef.current.clear()}
         />

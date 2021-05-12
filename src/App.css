@@ -163,10 +163,15 @@ li {
   margin-left: 5px;
 }
 
-.MuiSvgIcon-root:hover {
+.toolBar .MuiSvgIcon-root:hover {
   color: green;
 }
 
 .toolBar .MuiPaper-elevation24 {
   box-shadow: 6px 6px 6px 6px;
+}
+
+.MuiSlider-root{
+  width:10px;
+  height: 50px;
 }

@@ -20,6 +20,9 @@ const MultiPlayer = ({game}) => {
       <Toolbar canvasRef={canvasRef}/>
       <CanvasDraw className='canvas'
         ref={canvasRef}
+        lazyRadius={0}
+        brushColor={game.brushColor}
+        brushRadius={game.brushRadius}
       />
       <SideBar playerList={game.playerList}/>
     </div>

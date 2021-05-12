@@ -36,6 +36,8 @@ const DEV_STATE = {
     letter: 5,
   },
   paletteVisible: false,
+  brushRadius: 10,
+  brushSize: '#fff',
   settings: {
     roundCount: 50,
     roundTimer: 5,
