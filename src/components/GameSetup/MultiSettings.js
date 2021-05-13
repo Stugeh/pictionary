@@ -3,12 +3,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import {TextField, Button} from '@material-ui/core';
+import {TextField, Button, InputAdornment} from '@material-ui/core';
 
 import {useField} from '../../hooks/formHook';
 import {switchViewMP} from '../../reducers/menuReducer';
 import {initGame, updatePlayerList} from '../../reducers/multiplayerReducer';
-
 
 const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
   const {
@@ -51,24 +50,58 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
     switchViewMP();
   };
 
-  // TODO disable play button when player list is empty or any rule 0/undefined
   return (
     <div className='settings' style={{textAlign: 'center'}}>
 
       <form onSubmit={addPlayer} >
-        <TextField {...playerEntry}/>
-        <Button variant='contained' color='primary' type='submit'>
+        <h3>Enter some players</h3>
+        <TextField
+          error={playerList.length < 2}
+          variant='filled'
+          helperText='input players to the game'
+          {...playerEntry}
+        />
+        <Button
+          className='playerSubmit'
+          variant='contained'
+          color='primary'
+          type='submit'
+        >
             Submit
         </Button>
       </form>
 
-      <form style={{paddingTop: '15%'}}>
+      <form style={{paddingTop: '2%'}}>
         <h3>Round timer</h3>
-        <TextField {...roundTimer}/>
+        <TextField
+          error={roundTimer.value === '' }
+          variant='filled'
+          endAdornment={
+            <InputAdornment position="end">Seconds</InputAdornment>
+          }
+          helperText='How long the players have to guess a word.'
+          {...roundTimer}
+        />
+
         <h3>Letter reveal timer</h3>
-        <TextField {...letterTimer}/>
+        <TextField
+          error={letterTimer.value === '' }
+          variant='filled'
+          endAdornment={
+            <InputAdornment position="end">Seconds</InputAdornment>
+          }
+          helperText='Time between revealing a new letter.'
+          {...letterTimer}
+        />
+
         <h3>Round Count</h3>
-        <TextField {...roundCount}/>
+        <TextField
+          error={roundCount.value === '' }
+          variant='filled'
+          {...roundCount}
+          helperText='How many drawings until game ends.'
+        />
+
         <div className='play'>
           <Button
             variant='contained'
@@ -76,8 +109,8 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
             color='primary'
             onClick={() => gameIsReady() ? startGame() : null}
           >
-            <PlayArrowIcon fontSize='large'/>
             Play
+            <PlayArrowIcon style={{fontSize: '50px'}}/>
           </Button>
         </div>
       </form>
