@@ -7,7 +7,7 @@ import {popupWin} from './popupReducer';
 const DEV_STATE = {
   currentDrawer: 0,
   roundInProgress: false,
-  currentRound: 0,
+  currentRound: 1,
   word: [],
   wordList: [],
   playerList: [
@@ -23,7 +23,7 @@ const DEV_STATE = {
   brushSize: 1,
   brushColor: '#444',
   settings: {
-    roundCount: 50,
+    roundCount: 2,
     roundTimer: 30,
     letterTimer: 5,
   },
@@ -238,9 +238,12 @@ export const initGame = (settings) => {
     const newGame = {
       currentDrawer: 0,
       roundInProgress: false,
-      currentRound: 0,
-      currentWord: '',
-      visibleWord: [],
+      currentRound: 1,
+      paletteVisible: false,
+      brushSize: 1,
+      brushColor: '#444',
+      word: [],
+      wordList: [],
       playerList: settings.playerList,
       roundWinner: '',
       timeLeft: {

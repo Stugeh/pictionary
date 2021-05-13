@@ -32,6 +32,7 @@ li {
 
 .gameWindow {
   border-style: solid;
+  background-color: white;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;

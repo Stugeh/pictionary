@@ -5,7 +5,7 @@ import {ListItem, ListItemIcon, ListItemText, Button} from '@material-ui/core';
 
 import {setRoundWinner} from '../../reducers/multiplayerReducer';
 
-const PlayerScore = ({player, drawer, setRoundWinner}) => {
+const PlayerScore = ({player, drawer, setRoundWinner, roundInProgress}) => {
   return (
     <ListItem>
       <ListItemIcon>
@@ -13,11 +13,13 @@ const PlayerScore = ({player, drawer, setRoundWinner}) => {
           color='primary'
           variant='contained'
           onClick={
-            player.name!==drawer ?
+            player.name!==drawer && roundInProgress ?
               () => setRoundWinner(player.name) : null
           }
           style={{
-            backgroundColor: player.name!==drawer ? 'green' : 'gray',
+            backgroundColor:
+              player.name!==drawer && roundInProgress ?
+              'green' : 'gray',
             marginRight: '10px',
           }}
         >
@@ -37,6 +39,7 @@ const PlayerScore = ({player, drawer, setRoundWinner}) => {
 const mapStateToProps = (state) => ({
   drawer: state.multiplayer
       .playerList[state.multiplayer.currentDrawer].name,
+  roundInProgress: state.multiplayer.roundInProgress,
 });
 
 const mapDispatchToProps = (dispatch) => ({

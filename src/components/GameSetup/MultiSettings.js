@@ -9,15 +9,25 @@ import {useField} from '../../hooks/formHook';
 import {switchViewMP} from '../../reducers/menuReducer';
 import {initGame, updatePlayerList} from '../../reducers/multiplayerReducer';
 
+
 const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
   const {
-    reset: roundTimerReset, ...roundTimer} = useField('number', '90 seconds');
+    reset: roundTimerReset, ...roundTimer} = useField('number', 'seconds');
   const {
-    reset: letterTimerReset, ...letterTimer} = useField('number', '15 seconds');
+    reset: letterTimerReset, ...letterTimer} = useField('number', 'seconds');
   const {
-    reset: roundCountReset, ...roundCount} = useField('number', '50 rounds');
+    reset: roundCountReset, ...roundCount} = useField('number', 'rounds');
   const {
     reset: playerEntryReset, ...playerEntry} = useField('text', 'nickname');
+
+  // if any setting fields are left empty or game
+  // has less than 2 players returns false
+  const gameIsReady = () => {
+    const inputs = [roundTimer.value, letterTimer.value, roundCount.value];
+    if (inputs.includes('')) return false;
+    if (playerList.length < 2) return false;
+    return true;
+  };
 
   const addPlayer = (e) => {
     e.preventDefault();
@@ -30,8 +40,7 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
     playerEntryReset();
   };
 
-  const startGame = (e) => {
-    e.preventDefault();
+  const startGame = () => {
     const newSettings = {
       letterTimer: parseInt(letterTimer.value),
       roundTimer: parseInt(roundTimer.value),
@@ -41,6 +50,7 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
     initGame(newSettings);
     switchViewMP();
   };
+
   // TODO disable play button when player list is empty or any rule 0/undefined
   return (
     <div className='settings' style={{textAlign: 'center'}}>
@@ -52,7 +62,7 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         </Button>
       </form>
 
-      <form onSubmit={startGame} style={{paddingTop: '15%'}}>
+      <form style={{paddingTop: '15%'}}>
         <h3>Round timer</h3>
         <TextField {...roundTimer}/>
         <h3>Letter reveal timer</h3>
@@ -61,11 +71,10 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         <TextField {...roundCount}/>
         <div className='play'>
           <Button
-            onClick={startGame}
             variant='contained'
-            style={playButtonStyle}
+            style={gameIsReady() ? playButtonStyle : disabledButton}
             color='primary'
-            type='submit'
+            onClick={() => gameIsReady() ? startGame() : null}
           >
             <PlayArrowIcon fontSize='large'/>
             Play
@@ -82,6 +91,16 @@ const playButtonStyle = {
   paddingLeft: '50px',
   paddingRight: '50px',
   backgroundColor: 'green',
+  fontSize: '40px',
+  marginTop: '30px',
+};
+
+const disabledButton = {
+  paddingTop: '0px',
+  paddinBottom: '0px',
+  paddingLeft: '50px',
+  paddingRight: '50px',
+  backgroundColor: 'gray',
   fontSize: '40px',
   marginTop: '30px',
 };
