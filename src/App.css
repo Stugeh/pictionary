@@ -51,6 +51,16 @@ li {
     "main sidebar"
 }
 
+.backButton{
+  grid-area: header;
+  float: left;
+  margin: 10px;
+  height: 40px;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+}
+
 .canvas {
   grid-area: canvas;
   overflow: hidden;
@@ -70,9 +80,8 @@ li {
   height: 100%; 
 }
 
-.setUpHeader {
+.gameSetup h1 {
   grid-area: header;
-  background-color: gray;
 }
   
 
