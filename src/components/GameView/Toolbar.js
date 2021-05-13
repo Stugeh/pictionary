@@ -38,7 +38,13 @@ const Toolbar = ({
           onClick={() => canvasRef.current.clear()}
         />
       </Paper>
-      {paletteVisible ? <GithubPicker/> : null}
+      {paletteVisible ?
+        <GithubPicker
+          onChange={(color) => {
+            updateBrushColor(color.hex);
+            togglePalette();
+          }}
+        /> : null}
     </div>
   );
 };

@@ -96,7 +96,7 @@ const reducer = (state = DEV_STATE, action) => {
       return {...state, brushSize: action.data};
 
     case 'UPDATE_BRUSH_COLOR':
-      return {...state, brushSize: action.data};
+      return {...state, brushColor: action.data};
 
     case 'NEXT_ROUND_MULTI':
       // increment current drawer and round, reset timers.
