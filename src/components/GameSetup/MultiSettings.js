@@ -57,13 +57,13 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         <h3>Enter some players</h3>
         <TextField
           error={playerList.length < 2}
-          variant='filled'
+          variant='outlined'
           helperText='input players to the game'
           {...playerEntry}
         />
         <Button
           className='playerSubmit'
-          variant='contained'
+          variant='outlined'
           color='primary'
           type='submit'
         >
@@ -75,7 +75,7 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         <h3>Round timer</h3>
         <TextField
           error={roundTimer.value === '' }
-          variant='filled'
+          variant='outlined'
           endAdornment={
             <InputAdornment position="end">Seconds</InputAdornment>
           }
@@ -86,7 +86,7 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         <h3>Letter reveal timer</h3>
         <TextField
           error={letterTimer.value === '' }
-          variant='filled'
+          variant='outlined'
           endAdornment={
             <InputAdornment position="end">Seconds</InputAdornment>
           }
@@ -97,7 +97,7 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         <h3>Round Count</h3>
         <TextField
           error={roundCount.value === '' }
-          variant='filled'
+          variant='outlined'
           {...roundCount}
           helperText='How many drawings until game ends.'
         />

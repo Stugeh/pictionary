@@ -229,7 +229,7 @@ li {
   display:block;
 }
 
-.settings .MuiFilledInput-root{
+.settings .MuiOutlinedInput-root{
   text-align: center;
   width: 100%;
 }
