@@ -63,7 +63,7 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         />
         <Button
           className='playerSubmit'
-          variant='outlined'
+          variant='contained'
           color='primary'
           type='submit'
         >
