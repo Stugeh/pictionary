@@ -165,7 +165,6 @@ li {
   grid-area:canvas;
   position: absolute;
   top: 10%;
-  width: 70px;
   height:630px;
   margin-right: 0;
   z-index: 20;
@@ -182,11 +181,17 @@ li {
 
 .toolBar .MuiPaper-elevation24 {
   box-shadow: 6px 6px 6px 6px;
+  float: left;
+  width: 70px;
 }
 
 .MuiSlider-root{
   width:10px;
   height: 50px;
+}
+
+.github-picker{
+  float:left;
 }
 
 .edit:hover{

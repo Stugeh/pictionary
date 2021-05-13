@@ -10,7 +10,6 @@ import Toolbar from './Toolbar';
 
 const MultiPlayer = ({game}) => {
   const canvasRef = useRef(null);
-  console.log('game.brushSize :>> ', game.brushSize);
   return (
     <div className='gameGrid'>
       <TopBar/>

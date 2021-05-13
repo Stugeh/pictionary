@@ -2,22 +2,6 @@ import randomWords from 'random-words';
 import {popupWin} from './popupReducer';
 
 // const INITIAL_STATE = {
-//   currentDrawer: 0,
-//   roundInProgress: false,
-//   currentRound: 0,
-//   currentWord: '',
-//   visibleWord: [],
-//   playerList: [],
-//   roundWinner: '',
-//   timeLeft: {
-//     round: 90,
-//     letter: 15,
-//   },
-//   settings: {
-//     roundCount: 50,
-//     roundTimer: 90,
-//     letterTimer: 15,
-//   },
 // };
 
 const DEV_STATE = {
@@ -111,6 +95,9 @@ const reducer = (state = DEV_STATE, action) => {
     case 'UPDATE_BRUSH_SIZE':
       return {...state, brushSize: action.data};
 
+    case 'UPDATE_BRUSH_COLOR':
+      return {...state, brushSize: action.data};
+
     case 'NEXT_ROUND_MULTI':
       // increment current drawer and round, reset timers.
       const updatedState = {
@@ -127,6 +114,7 @@ const reducer = (state = DEV_STATE, action) => {
       return updatedState;
 
     case 'TOGGLE_PALETTE':
+      console.log('1 :>> ', 1);
       return {...state, paletteVisible: !state.paletteVisible};
 
     case 'ROUND_WINNER_MULTI':
@@ -161,6 +149,12 @@ export const selectWord = (word) => {
 export const updateBrushSize = (size) => {
   return (dispatch) => {
     dispatch({type: 'UPDATE_BRUSH_SIZE', data: size});
+  };
+};
+
+export const updateBrushColor = (color) => {
+  return (dispatch) => {
+    dispatch({type: 'UPDATE_BRUSH_COLOR', data: color});
   };
 };
 

@@ -1,22 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import {GithubPicker} from 'react-color';
 import {Paper, Slider} from '@material-ui/core';
 
 import PaletteIcon from '@material-ui/icons/Palette';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-import {updateBrushSize} from '../../reducers/multiplayerReducer';
+import {togglePalette, updateBrushSize, updateBrushColor,
+} from '../../reducers/multiplayerReducer';
 
-const Toolbar = ({canvasRef, updateBrushSize}) => {
+const Toolbar = ({
+  canvasRef, updateBrushSize, togglePalette,
+  updateBrushColor, paletteVisible,
+}) => {
   return (
     <div className='toolBar'>
       <Paper
-        style={{height: '100%'}}
         elevation={24}
       >
-        <PaletteIcon focusable={true}/><br/>
+        <PaletteIcon onClick={togglePalette}/><br/>
         <EditIcon className='edit'/>
         <Slider
           style={{height: '400px', marginLeft: '20px'}}
@@ -34,13 +38,21 @@ const Toolbar = ({canvasRef, updateBrushSize}) => {
           onClick={() => canvasRef.current.clear()}
         />
       </Paper>
+      {paletteVisible ? <GithubPicker/> : null}
     </div>
   );
 };
 
+const mapStateToProps = (state) => ({
+  brushColor: state.multiplayer.brushColor,
+  paletteVisible: state.multiplayer.paletteVisible,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   updateBrushSize: (size) => dispatch(updateBrushSize(size)),
+  updateBrushColor: (color) => dispatch(updateBrushColor(color)),
+  togglePalette: () => dispatch(togglePalette()),
 });
 
-export default connect(null, mapDispatchToProps)(Toolbar);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);
