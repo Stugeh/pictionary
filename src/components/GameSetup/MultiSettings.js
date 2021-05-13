@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import {TextField, Button, InputAdornment} from '@material-ui/core';
+import {TextField, Button} from '@material-ui/core';
 
 import {useField} from '../../hooks/formHook';
 import {switchViewMP} from '../../reducers/menuReducer';
@@ -11,11 +11,14 @@ import {initGame, updatePlayerList} from '../../reducers/multiplayerReducer';
 
 const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
   const {
-    reset: roundTimerReset, ...roundTimer} = useField('number', 'seconds');
+    reset: roundTimerReset,
+    ...roundTimer} = useField('number', 'seconds', '30');
   const {
-    reset: letterTimerReset, ...letterTimer} = useField('number', 'seconds');
+    reset: letterTimerReset,
+    ...letterTimer} = useField('number', 'seconds', '7');
   const {
-    reset: roundCountReset, ...roundCount} = useField('number', 'rounds');
+    reset: roundCountReset,
+    ...roundCount} = useField('number', 'rounds', '18');
   const {
     reset: playerEntryReset, ...playerEntry} = useField('text', 'nickname');
 
@@ -76,9 +79,6 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         <TextField
           error={roundTimer.value === '' }
           variant='outlined'
-          endAdornment={
-            <InputAdornment position="end">Seconds</InputAdornment>
-          }
           helperText='How long the players have to guess a word.'
           {...roundTimer}
         />
@@ -87,9 +87,6 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
         <TextField
           error={letterTimer.value === '' }
           variant='outlined'
-          endAdornment={
-            <InputAdornment position="end">Seconds</InputAdornment>
-          }
           helperText='Time between revealing a new letter.'
           {...letterTimer}
         />
