@@ -1,36 +1,30 @@
 import randomWords from 'random-words';
 import {popupWin} from './popupReducer';
 
-// const INITIAL_STATE = {
-// };
-
-const DEV_STATE = {
+const INITIAL_STATE = {
   currentDrawer: 0,
   roundInProgress: false,
   currentRound: 1,
   word: [],
   wordList: [],
-  playerList: [
-    {name: 'tuukka', score: 0},
-    {name: 'tuukka2', score: 0},
-  ],
+  playerList: [],
   roundWinner: '',
   timeLeft: {
-    round: 30,
-    letter: 5,
+    round: 0,
+    letter: 0,
   },
   paletteVisible: false,
   brushSize: 1,
   brushColor: '#444',
   settings: {
-    roundCount: 2,
-    roundTimer: 30,
-    letterTimer: 5,
+    roundCount: 0,
+    roundTimer: 0,
+    letterTimer: 0,
   },
 };
 
 
-const reducer = (state = DEV_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'INIT_MULTI':
       return action.data;
