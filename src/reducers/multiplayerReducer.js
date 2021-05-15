@@ -114,7 +114,6 @@ const reducer = (state = DEV_STATE, action) => {
       return updatedState;
 
     case 'TOGGLE_PALETTE':
-      console.log('1 :>> ', 1);
       return {...state, paletteVisible: !state.paletteVisible};
 
     case 'ROUND_WINNER_MULTI':

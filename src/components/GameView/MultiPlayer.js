@@ -9,6 +9,7 @@ import SideBar from './SideBar';
 import Toolbar from './Toolbar';
 
 const MultiPlayer = ({game}) => {
+  // stores reference to the canvas so it can be cleared
   const canvasRef = useRef(null);
   return (
     <div className='gameGrid'>

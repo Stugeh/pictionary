@@ -101,7 +101,7 @@ li {
   background-color: rgb(146, 146, 245);
   height: 100%;
   width: 100%;
-  grid-template-areas: "timer word . .";
+  grid-template-areas: "timer word . exit";
 }
 
 .roundTimer{
@@ -175,9 +175,9 @@ li {
   display: flex;
   grid-area:canvas;
   position: absolute;
-  top: 10%;
+  top: 8%;
   width: 70px;
-  height:630px;
+  height:690px;
   margin-right: 0;
   z-index: 20;
 }
@@ -208,8 +208,22 @@ li {
   padding-left: 5px;
 }
 
-.github-picker{
+.compact-picker{
   position: absolute;
+  left:10px;
+  background-color:white;
+  border: 1px solid
+}
+
+.exit{
+  grid-area:exit;
+  text-align: right;
+}
+
+.exit-button{
+  height: 50px;
+  width: 200px;
+  
 }
 
 .settings form {

@@ -5,13 +5,18 @@ import {connect} from 'react-redux';
 import {useInterval} from 'use-interval';
 import {ProgressBar} from 'react-progressbar-fancy';
 
+import {Button} from '@material-ui/core';
+
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+import {switchViewMenu} from '../../reducers/menuReducer';
 import {popupNoWin} from '../../reducers/popupReducer';
 import {
   revealWord, revealLetter, decrementTimers, resetLetterTimer, endRound,
 } from '../../reducers/multiplayerReducer';
 
 const TopBar = (props) => {
-  const {game, popupNoWin, revealWord, endRound,
+  const {game, popupNoWin, revealWord, endRound, switchViewMenu,
     revealLetter, decrementTimers, resetLetterTimer} = props;
   useInterval(() => {
     if (game.roundInProgress) {
@@ -43,14 +48,25 @@ const TopBar = (props) => {
       <div className='visibleWord'>
         {game.word.map((letter) => letter.visible ? `${letter.char} `: '_ ')}
       </div>
+      <div className='exit'>
+        <Button
+          className='exit-button'
+          variant='contained'
+          color='secondary'
+          onClick={switchViewMenu}
+        >
+          Exit game
+          <ExitToAppIcon/>
+        </Button>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({game: state.multiplayer});
 const mapDispatchToProps = {
-  popupNoWin, revealWord,
-  decrementTimers, revealLetter, resetLetterTimer, endRound,
+  popupNoWin, revealWord, decrementTimers, revealLetter,
+  resetLetterTimer, endRound, switchViewMenu,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {GithubPicker} from 'react-color';
+import {CompactPicker} from 'react-color';
 import {Paper, Slider} from '@material-ui/core';
 
+import UndoIcon from '@material-ui/icons/Undo';
 import PaletteIcon from '@material-ui/icons/Palette';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -34,12 +35,13 @@ const Toolbar = ({
           className='edit'
           style={{fontSize: '30px', paddingLeft: '15px'}}
         />
+        <UndoIcon onClick={() => canvasRef.current.undo()}/>
         <DeleteIcon
           onClick={() => canvasRef.current.clear()}
         />
       </Paper>
       {paletteVisible ?
-        <GithubPicker
+        <CompactPicker
           onChange={(color) => {
             updateBrushColor(color.hex);
             togglePalette();
