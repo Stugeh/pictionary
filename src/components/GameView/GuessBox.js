@@ -1,34 +1,44 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
 import {Button, Divider, TextField} from '@material-ui/core';
 
-import {makeGuess} from '../../reducers/singleplayerReducer';
+import {useField} from '../../hooks/formHook';
+import {makeGuess, spWinRound} from '../../reducers/singleplayerReducer';
 
-const GuessBox = ({guesses, time}) => {
+const GuessBox = ({guesses, time, word, makeGuess, spWinRound}) => {
+  const {reset: guessReset, ...guess} = useField('text', 'Make a guess');
+
+  const handleGuess = (e) => {
+    e.preventDefault();
+    makeGuess(guess.value, time);
+    word === guess.value ? spWinRound() : null;
+    guessReset();
+  };
+
   return (
     <div className='guess-container'>
       <h1>Guesses</h1>
       <Divider/>
-      <div className='guess-list'>
-        {guesses.map((guess) => {
-          <div
-            className='guess'
-            key={`${guess.text}${guess.time}`}
-          >
-            {guess.text}
-          </div>;
-        })}
+      <div className='guesses'>
+        {guesses.map((guess) => (
+          <div key={`${guess.text}${guess.time}`}>
+            <h3>{guess.text}</h3>
+            <Divider/>
+          </div>
+        ))}
       </div>
       <div className='guess-input'>
         <Divider/>
-        <form onSubmit={() => console.log('submit')}>
+        <form onSubmit={handleGuess}>
           <TextField
             variant='outlined'
-            label='Make a guess'
             autoFocus={true}
+            {...guess}
           />
-          <Button type='submit' color='primary' variant='contained'>
+          <Button
+            type='submit'
+            color='primary'
+            variant='contained'>
               Submit
           </Button>
         </form>
@@ -40,10 +50,13 @@ const GuessBox = ({guesses, time}) => {
 const mapStateToProps = (state) => ({
   guesses: state.singleplayer.guesses,
   time: state.singleplayer.timeLeft.round,
+  word: state.singleplayer.word
+      .map((letter) => letter.char.toLowerCase).join(''),
 });
 
-const mapDispatchToProps = {
+const mapDispatchToProps = (dispatch) => ({
   makeGuess: (text, time) => dispatch(makeGuess(text, time)),
-};
+  spWinRound: () => dispatch((spWinRound())),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(GuessBox);

@@ -79,6 +79,7 @@ li {
   border-left: 1px solid;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   grid-template-rows: 1fr 6fr 1.5fr;
   grid-template-areas: 
   "guess-header"
@@ -88,7 +89,16 @@ li {
 
 .guesses {
   grid-area: guess-list;
+
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
 }
+
+.guesses h3{
+  padding-left: 30px;
+}
+
 .guess-input{
   grid-area:guess-input;
 }
@@ -101,6 +111,7 @@ li {
 .guess-input .MuiFormControl-root{
   width: 100%;
   margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .guess-container h1{
