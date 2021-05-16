@@ -12,6 +12,12 @@ const reducer = (state={variant: 'preWordList', visible: true}, action) => {
       return {variant: 'wordList', visible: true};
     case 'TOGGLE_POPUP':
       return {...state, visible: !state.visible};
+    case 'SP_WIN_POPUP':
+      return {...state, variant: 'spWin', visible: true};
+    case 'SP_NO_WIN_POPUP':
+      return {...state, variant: 'spNoWin', visible: true};
+    case 'SP_GAME_OVER_POPUP':
+      return {...state, variant: 'spGameOver', visible: true};
     default: return state;
   }
 };
@@ -19,6 +25,24 @@ const reducer = (state={variant: 'preWordList', visible: true}, action) => {
 export const initPopup = () => {
   return (dispatch) => {
     dispatch({type: 'INIT_POPUPS'});
+  };
+};
+
+export const spPopupWin = () => {
+  return (dispatch) => {
+    dispatch({type: 'SP_WIN_POPUP'});
+  };
+};
+
+export const spPopupNoWin = () => {
+  return (dispatch) => {
+    dispatch({type: 'SP_NO_WIN_POPUP'});
+  };
+};
+
+export const spPopupGameOver = () => {
+  return (dispatch) => {
+    dispatch({type: 'SP_GAME_OVER_POPUP'});
   };
 };
 

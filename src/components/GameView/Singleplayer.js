@@ -5,7 +5,7 @@ import TopBar from './TopBar';
 import Picture from './Picture';
 import GuessBox from './GuessBox';
 
-const Singleplayer = ({game}) => {
+const Singleplayer = () => {
   return (
     <div className='gameGrid'>
       <TopBar/>

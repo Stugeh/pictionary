@@ -1,3 +1,5 @@
+import {spPopupWin} from './popupReducer';
+
 const INITIAL_BOARD = [
   [
     {visible: true}, {visible: true}, {visible: true},
@@ -103,9 +105,24 @@ const reducer = (state = DEV_STATE, action) => {
   }
 };
 
-export const makeGuess = () => {
+export const makeGuess = (text, time) => {
   return (dispatch) => {
+    const newGuess = {text, time};
+    console.log('newGuess :>> ', newGuess);
+    dispatch({type: 'ADD_GUESS', data: newGuess});
+  };
+};
 
+export const spWinRound = () => {
+  return (dispatch) => {
+    dispatch(endRound());
+    dispatch(spPopupWin());
+  };
+};
+
+export const endRound = () => {
+  return (dispatch) => {
+    dispatch({type: 'SP_END_ROUND'});
   };
 };
 
