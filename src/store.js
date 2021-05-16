@@ -1,5 +1,6 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 import multiplayerReducer from './reducers/multiplayerReducer';
 import singleplayerReducer from './reducers/singleplayerReducer';
@@ -15,7 +16,7 @@ const reducer = combineReducers({
 
 const Store = createStore(
     reducer,
-    composeWithDevTools(),
+    composeWithDevTools(applyMiddleware(thunk)),
 );
 
 export default Store;
