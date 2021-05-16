@@ -3,12 +3,14 @@ import {connect} from 'react-redux';
 
 import TopBar from './TopBar';
 import Picture from './Picture';
+import GuessBox from './GuessBox';
 
 const Singleplayer = ({game}) => {
   return (
     <div className='gameGrid'>
       <TopBar/>
       <Picture/>
+      <GuessBox/>
     </div>
   );
 };
