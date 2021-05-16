@@ -13,7 +13,9 @@ const SingleSetup = ({switchViewSP}) => {
          multiplayer is finished.
       </h1>
       <Button
-        onClick={switchViewSP}
+        onClick={() => {
+          switchViewSP();
+        }}
         variant='contained'
         style={playButtonStyle}
         color='primary'
