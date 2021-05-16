@@ -19,12 +19,28 @@ const INITIAL_BOARD = [
   ],
 ];
 
+const PICTURES = [
+  {
+    word: 'giraffe',
+    image: './giraffe.jpg',
+  },
+  {
+    word: 'puuhöylä',
+    image: './puuhoyla.jpg',
+  },
+  {
+    word: 'tree',
+    image: './tree.png',
+  },
+];
+
 const DEV_STATE = {
   roundInProgress: false,
   currentRound: 1,
   word: [],
   guesses: [],
-  picture: '',
+  score: 0,
+  picture: './puuhoyla.jpg',
   timeLeft: {
     round: 30,
     letter: 5,
@@ -66,7 +82,10 @@ const reducer = (state = DEV_STATE, action) => {
     case 'SP_START_ROUND':
       return {...state, roundInProgress: true};
 
-      // TODO make this more efficient
+    case 'SP_ADD_SCORE':
+      return {...state, score: state.score + state.timeLeft.round * 100};
+
+    // TODO make this more efficient
     case 'REVEAL_LETTER_SINGLE':
       // save all indexes where the character is hidden to array
       const availableIdxs = state.word
@@ -82,7 +101,7 @@ const reducer = (state = DEV_STATE, action) => {
         // return updated state
       return {...state, word: newWord};
 
-    case 'SELECT_PICTURE':
+    case 'SELECT_WORD':
       return {
         ...state,
         word: action.data.word,
@@ -105,6 +124,34 @@ const reducer = (state = DEV_STATE, action) => {
   }
 };
 
+export const decrementTimersSP = () => {
+  return (dispatch) => {
+    dispatch({type: 'DECREMENT_TIMERS_SINGLE'});
+  };
+};
+
+export const nextRound = () => {
+  return (dispatch)=>{
+    dispatch({type: 'NEXT_ROUND_SINGLE'});
+    dispatch(selectWord());
+    dispatch(startRound());
+  };
+};
+
+export const selectWord = () => {
+  return (dispatch) => {
+    const newPic = PICTURES[Math.floor(Math.random() * PICTURES.length)];
+    const wordArray = newPic.word.split('');
+    const finalWordArray = wordArray
+        .map((letter) => ({char: letter, visible: false}));
+
+    dispatch({
+      type: 'SELECT_WORD',
+      data: {picture: newPic.image, word: finalWordArray},
+    });
+  };
+};
+
 export const makeGuess = (text, time) => {
   return (dispatch) => {
     const newGuess = {text, time};
@@ -116,13 +163,27 @@ export const makeGuess = (text, time) => {
 export const spWinRound = () => {
   return (dispatch) => {
     dispatch(endRound());
+    dispatch(addScore());
     dispatch(spPopupWin());
+  };
+};
+
+export const addScore = () => {
+  return (dispatch) => {
+    dispatch({type: 'ADD_SCORE'});
   };
 };
 
 export const endRound = () => {
   return (dispatch) => {
+    dispatch({type: 'CLEAR_GUESSES'});
     dispatch({type: 'SP_END_ROUND'});
+  };
+};
+
+export const startRound = () => {
+  return (dispatch) => {
+    dispatch({type: 'SP_START_ROUND'});
   };
 };
 

@@ -1,15 +1,20 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 const images = require.context('../../assets', true);
 
-const Picture = () => {
+const Picture = ({picture}) => {
   return (
     <div className='picture-container'>
       <img
-        src={images('./puuhoyla.jpg').default}
+        src={images(picture).default}
       />
     </div>
   );
 };
 
-export default Picture;
+const mapStateToProps = (state) => ({
+  picture: state.singleplayer.picture,
+});
+
+export default connect(mapStateToProps)(Picture);

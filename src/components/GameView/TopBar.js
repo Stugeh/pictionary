@@ -12,15 +12,20 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {switchViewMenu} from '../../reducers/menuReducer';
 import {popupNoWin} from '../../reducers/popupReducer';
 import {
-  revealWord, revealLetter, decrementTimers, resetLetterTimer, endRound,
+  revealWord, revealLetter, decrementTimers,
+  resetLetterTimer, endRound,
 } from '../../reducers/multiplayerReducer';
+import {decrementTimersSP} from '../../reducers/singleplayerReducer';
 
 const TopBar = (props) => {
-  const {game, popupNoWin, revealWord, endRound, switchViewMenu,
-    revealLetter, decrementTimers, resetLetterTimer} = props;
+  const {
+    game, popupNoWin, revealWord, endRound, switchViewMenu,
+    revealLetter, decrementTimers, decrementTimersSP, resetLetterTimer,
+  } = props;
+
   useInterval(() => {
     if (game.roundInProgress) {
-      decrementTimers();
+      game.board ? decrementTimersSP() : decrementTimers();
       if (game.timeLeft.letter === 0) {
         revealLetter(game.visibleWord, game.currentWord);
         resetLetterTimer();
@@ -48,6 +53,14 @@ const TopBar = (props) => {
       <div className='visibleWord'>
         {game.word.map((letter) => letter.visible ? `${letter.char} `: '_ ')}
       </div>
+      {game.score !== undefined ?
+      <h3
+        className='points'
+        style={{textAlign: 'right'}}
+      >
+        score: {game.score}
+      </h3> : null
+      }
       <div className='exit'>
         <Button
           className='exit-button'
@@ -70,8 +83,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  popupNoWin, revealWord, decrementTimers, revealLetter,
-  resetLetterTimer, endRound, switchViewMenu,
+  popupNoWin, revealWord, decrementTimers, decrementTimersSP,
+  revealLetter, resetLetterTimer, endRound, switchViewMenu,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
