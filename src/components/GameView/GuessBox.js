@@ -11,6 +11,7 @@ const GuessBox = ({guesses, time, word, makeGuess, spWinRound}) => {
   const handleGuess = (e) => {
     e.preventDefault();
     makeGuess(guess.value, time);
+    console.log('word :>> ', word);
     word === guess.value ? spWinRound() : null;
     guessReset();
   };
@@ -51,7 +52,7 @@ const mapStateToProps = (state) => ({
   guesses: state.singleplayer.guesses,
   time: state.singleplayer.timeLeft.round,
   word: state.singleplayer.word
-      .map((letter) => letter.char.toLowerCase).join(''),
+      .map((letter) => letter.char.toLowerCase()).join(''),
 });
 
 const mapDispatchToProps = (dispatch) => ({

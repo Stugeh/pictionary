@@ -4,18 +4,18 @@ import {connect} from 'react-redux';
 import {Button} from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import {nextRound} from '../../../reducers/multiplayerReducer';
-import {popupPreWordList} from '../../../reducers/popupReducer';
+import {nextRound} from '../../../reducers/singleplayerReducer';
+import {togglePopup} from '../../../reducers/popupReducer';
 
-const Winner = ({nextRound, popupPreWordList, winner, points}) => {
+const NoWinner = ({nextRound, togglePopup}) => {
   const handleNextRound = () => {
     nextRound();
-    popupPreWordList();
+    togglePopup();
   };
 
   return (
     <div>
-      <h1>{winner} won that round and got +{points} points!</h1>
+      <h1>You didn&apos;t quess the word in time :(</h1>
       <Button
         variant='contained'
         onClick={handleNextRound}
@@ -34,11 +34,6 @@ const Winner = ({nextRound, popupPreWordList, winner, points}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  winner: state.multiplayer.winner,
-  points: state.multiplayer.timeLeft.round * 100,
-});
+const mapDispatchToProps = {nextRound, togglePopup};
 
-const mapDispatchToProps = {nextRound, popupPreWordList};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Winner);
+export default connect(null, mapDispatchToProps)(NoWinner);
