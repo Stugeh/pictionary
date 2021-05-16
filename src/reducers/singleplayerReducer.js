@@ -1,7 +1,27 @@
+const INITIAL_BOARD = [
+  [
+    {visible: true}, {visible: true}, {visible: true},
+    {visible: true}, {visible: true},
+  ],
+  [{visible: true}, {visible: true}, {visible: true},
+    {visible: true}, {visible: true},
+  ],
+  [{visible: true}, {visible: true}, {visible: true},
+    {visible: true}, {visible: true},
+  ],
+  [{visible: true}, {visible: true}, {visible: true},
+    {visible: true}, {visible: true},
+  ],
+  [{visible: true}, {visible: true}, {visible: true},
+    {visible: true}, {visible: true},
+  ],
+];
+
 const DEV_STATE = {
   roundInProgress: false,
   currentRound: 1,
   word: [],
+  guesses: [],
   picture: '',
   timeLeft: {
     round: 30,
@@ -14,25 +34,7 @@ const DEV_STATE = {
     letterTimer: 5,
     tileTimer: 5,
   },
-  // TODO make this not hard coded
-  board: [
-    [
-      {visible: true}, {visible: true}, {visible: true},
-      {visible: true}, {visible: true},
-    ],
-    [{visible: true}, {visible: true}, {visible: true},
-      {visible: true}, {visible: true},
-    ],
-    [{visible: true}, {visible: true}, {visible: true},
-      {visible: true}, {visible: true},
-    ],
-    [{visible: true}, {visible: true}, {visible: true},
-      {visible: true}, {visible: true},
-    ],
-    [{visible: true}, {visible: true}, {visible: true},
-      {visible: true}, {visible: true},
-    ],
-  ],
+  board: INITIAL_BOARD,
 };
 
 const reducer = (state = DEV_STATE, action) => {
@@ -50,10 +52,17 @@ const reducer = (state = DEV_STATE, action) => {
         },
       };
 
-    case 'REVEAL_WORD_SINGLE':
-      const revealedWord = state.word
-          .map((letter) => ({...letter, visible: true}));
-      return {...state, word: revealedWord};
+    case 'ADD_GUESS':
+      return {...state, guesses: [...state.guesses, action.data]};
+
+    case 'CLEAR_GUESSES':
+      return {...state, guesses: []};
+
+    case 'SP_END_ROUND':
+      return {...state, roundInProgress: false};
+
+    case 'SP_START_ROUND':
+      return {...state, roundInProgress: true};
 
       // TODO make this more efficient
     case 'REVEAL_LETTER_SINGLE':
@@ -70,12 +79,6 @@ const reducer = (state = DEV_STATE, action) => {
               {...letter, visible: true} : letter);
         // return updated state
       return {...state, word: newWord};
-
-    case 'END_ROUND_SINGLE':
-      return {...state, roundInProgress: false, roundWinner: action.data};
-
-    case 'START_ROUND_SINGLE':
-      return {...state, roundInProgress: true};
 
     case 'SELECT_PICTURE':
       return {
@@ -100,6 +103,12 @@ const reducer = (state = DEV_STATE, action) => {
   }
 };
 
+export const makeGuess = () => {
+  return (dispatch) => {
+
+  };
+};
+
 export const initGame = (settings) => {
   return (dispatch) => {
     const newGame = {
@@ -117,25 +126,7 @@ export const initGame = (settings) => {
         letterTimer: settings.letterTimer,
         tileTimer: settings.tileTimer,
       },
-      // TODO make this not hard coded
-      board: [
-        [
-          {visible: true}, {visible: true}, {visible: true},
-          {visible: true}, {visible: true},
-        ],
-        [{visible: true}, {visible: true}, {visible: true},
-          {visible: true}, {visible: true},
-        ],
-        [{visible: true}, {visible: true}, {visible: true},
-          {visible: true}, {visible: true},
-        ],
-        [{visible: true}, {visible: true}, {visible: true},
-          {visible: true}, {visible: true},
-        ],
-        [{visible: true}, {visible: true}, {visible: true},
-          {visible: true}, {visible: true},
-        ],
-      ],
+      board: INITIAL_BOARD,
     };
     dispatch({type: 'INIT_MULTI', data: newGame});
   };
