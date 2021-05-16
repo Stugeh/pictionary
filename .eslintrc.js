@@ -5,10 +5,6 @@ module.exports = {
   },
   'extends': [
     'plugin:react/recommended',
-<<<<<<< HEAD
-=======
-    'google',
->>>>>>> 9733db4 (added a text field)
   ],
   'parserOptions': {
     'ecmaFeatures': {
