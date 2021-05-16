@@ -117,7 +117,7 @@ const MultiSetup = ({playerList, updatePlayerList, initGame, switchViewMP}) => {
 
 const playButtonStyle = {
   paddingTop: '0px',
-  paddinBottom: '0px',
+  paddingBottom: '0px',
   paddingLeft: '50px',
   paddingRight: '50px',
   backgroundColor: 'green',
@@ -127,7 +127,7 @@ const playButtonStyle = {
 
 const disabledButton = {
   paddingTop: '0px',
-  paddinBottom: '0px',
+  paddingBottom: '0px',
   paddingLeft: '50px',
   paddingRight: '50px',
   backgroundColor: 'gray',

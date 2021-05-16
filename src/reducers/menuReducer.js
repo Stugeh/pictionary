@@ -19,7 +19,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {...state, view: 'multiplayer'};
 
     case 'VIEW_SINGLEPLAYER':
-      return {...state, view: 'singlePlayer'};
+      return {...state, view: 'singleplayer'};
 
     default: return state;
   }
