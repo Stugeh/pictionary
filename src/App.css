@@ -61,6 +61,17 @@ li {
   width: 40px;
 }
 
+.picture-container {
+  border: 3px solid;
+  grid-area: canvas;
+  height: 70vh;
+  aspect-ratio: 4/3;
+  margin: auto;
+}
+.picture-container img{
+  width: 100%;
+}
+
 .canvas {
   grid-area: canvas;
   overflow: hidden;
