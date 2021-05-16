@@ -65,9 +65,10 @@ const TopBar = (props) => {
 
 // redux is awesome
 const mapStateToProps = (state) => ({
-  game: state.menu.activeMode==='multiplayer' ?
+  game: state.menu.view==='multiplayer' ?
     state.multiplayer : state.singleplayer,
 });
+
 const mapDispatchToProps = {
   popupNoWin, revealWord, decrementTimers, revealLetter,
   resetLetterTimer, endRound, switchViewMenu,

@@ -2,6 +2,7 @@ const DEV_STATE = {
   roundInProgress: false,
   currentRound: 1,
   word: [],
+  picture: '',
   timeLeft: {
     round: 30,
     letter: 5,
@@ -76,19 +77,11 @@ const reducer = (state = DEV_STATE, action) => {
     case 'START_ROUND_SINGLE':
       return {...state, roundInProgress: true};
 
-    case 'RESET_LETTER_TIMER':
-      return {
-        ...state,
-        timeLeft: {
-          ...state.timeLeft,
-          letter: state.settings.letterTimer,
-        },
-      };
-
-    case 'SELECT_WORD':
+    case 'SELECT_PICTURE':
       return {
         ...state,
         word: action.data.word,
+        picture: action.data.picture,
       };
 
     case 'NEXT_ROUND_SINGLE':
@@ -113,6 +106,7 @@ export const initGame = (settings) => {
       roundInProgress: false,
       currentRound: 1,
       word: [],
+      picture: '',
       timeLeft: {
         round: settings.roundTimer,
         letter: settings.letterTimer,
